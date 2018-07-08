@@ -1,0 +1,16 @@
+@mixin imprint-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  app-imprint {
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    max-height: 100%;
+    place-content: stretch center;
+  }
+  
+}

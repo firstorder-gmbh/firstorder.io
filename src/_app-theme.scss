@@ -1,0 +1,34 @@
+@import '../node_modules/@angular/material/theming';
+
+@import './styles/markdown-theme';
+@import './styles/svg-theme';
+
+@import './app/shared/footer/footer-theme';
+@import './app/shared/header/header-theme';
+@import './app/shared/sidenav/sidenav-theme';
+
+@import './app/pages/home/home-theme';
+@import './app/pages/imprint/imprint-theme';
+
+// Styles for the app that are based on the current theme.
+@mixin material-app-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .app-background {
+    background: mat-color($background, background);
+  }
+
+  @include markdown-theme($theme);
+  @include svg-theme($theme);
+
+  @include footer-theme($theme);
+  @include header-theme($theme);
+  @include sidenav-theme($theme);
+
+  @include home-theme($theme);
+  @include imprint-theme($theme);
+}

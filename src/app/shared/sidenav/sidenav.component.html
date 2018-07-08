@@ -1,0 +1,27 @@
+<mat-sidenav-container class="sidenav-container" [dir]="dir">
+  <mat-sidenav
+      #navbar
+      class="sidenav navbar"
+      fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false"
+      (openedChange)="navbarOpenedChange($event)">
+    <mat-toolbar color="primary">
+      <mat-icon class="app-logo" aria-label="Logo" svgIcon="logo"></mat-icon>
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/home">{{ 'HOME' | translate }}</a>
+    </mat-nav-list>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/imprint">{{ 'IMPRINT.TITLE' | translate }}</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-header></app-header>
+    <main class="main">
+      <router-outlet></router-outlet>
+    </main>
+    <app-footer></app-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

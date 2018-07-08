@@ -1,0 +1,22 @@
+@mixin header-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .header-toolbar {
+    background: mat-color($primary);
+    transition: background 200ms ease-out;
+    &.transparent:not(:hover) {
+      background: transparent !important;
+      transition: background 200ms ease-in;
+    }
+    h1 {
+      color: mat-color($primary, default-contrast);
+    }
+    .header-title {
+      font-family: spaceranger;
+    }
+  }
+}

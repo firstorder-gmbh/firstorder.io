@@ -1,0 +1,46 @@
+language: node_js
+dist: trusty
+sudo: false
+
+node_js:
+  # Use the explicit NodeJS LTS version 8.9.4 to avoid any automatic upgrade of the version.
+  # This ensures that all Travis jobs run consistently and don't have different Node versions.
+  - '8.9.4'
+
+#addons:
+#  chrome: stable
+#  firefox: latest
+
+# safelist
+branches:
+  only:
+  - master
+
+cache:
+  directories:
+    - node_modules
+
+install:
+  - npm install
+
+before_script:
+   - npm install -g firebase-tools
+
+script:
+  - npm run lint
+  #- npm run test:headless
+  #- npm run build
+  #- xvfb-run npm run e2e
+  #- npm run build:ssr
+  - npm run build:prerender
+
+after_success:
+   - firebase deploy --token $FIREBASE_TOKEN
+
+#deploy:
+#  provider: firebase
+#  skip_cleanup: true
+#  on:
+#    branch: master
+#  token:
+#    secure: $FIREBASE_TOKEN

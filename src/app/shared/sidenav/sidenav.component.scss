@@ -1,0 +1,18 @@
+mat-sidenav-container {
+  height: 100%;
+  mat-sidenav {
+    box-shadow: 3px 0 6px rgba(0, 0, 0, 0.24);
+    width: 200px;
+    .app-logo {
+      height: 40px;
+      width: 40px;
+    }
+  }
+  mat-sidenav-content {
+    display: flex;
+    flex-direction: column;
+    main {
+      flex: 1 0 auto;
+    }
+  }
+}

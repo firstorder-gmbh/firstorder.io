@@ -1,0 +1,34 @@
+@import '../../node_modules/@angular/material/theming';
+
+// Mixin to apply theme colors for docs generated from markdown files in the material2 repo.
+@mixin markdown-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+  $is-dark-theme: map-get($theme, is-dark);
+  $exportBackgroundOpacity: if($is-dark-theme, 0.06, 0.03);
+
+  .markdown-a {
+    color: mat-color($primary);
+  }
+
+  .markdown-pre {
+    background: rgba(mat-color($foreground, secondary-text), 0.01);
+    border: 0.5px solid rgba(mat-color($foreground, secondary-text), 0.03);
+
+    .markdown-code {
+      background: transparent;
+    }
+  }
+  
+  .markdown-h3 .material-icons,
+  .markdown-h4 .material-icons {
+    color: mat-color($foreground, secondary-text);
+  }
+
+  .markdown-code {
+    background: rgba(mat-color($foreground, secondary-text), $exportBackgroundOpacity);
+  }
+}

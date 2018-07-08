@@ -1,0 +1,10 @@
+<div class="container">
+  <section class="section-video" *ngIf="(isHandset$ | async) === false">
+    <iframe class="iframe-video" [src]="videoUrl" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </section>
+  <section class="section-intro" *ngIf="isHandset$ | async">
+    <picture class="picture-intro">
+      <img class="img-intro" src="assets/img/favicons/safari-pinned-tab.svg" alt="Logo">
+    </picture>
+  </section>
+</div>

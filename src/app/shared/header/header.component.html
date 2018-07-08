@@ -1,0 +1,12 @@
+<header class="header">
+  <mat-toolbar class="header-toolbar" [ngClass]="headerClass" color="primary">
+    <button
+        type="button"
+        aria-label="Toggle navbar"
+        mat-icon-button
+        (click)="toggleNavbar()">
+      <mat-icon aria-label="Side nav toggle icon" class="rtl-mirror">{{ isOpenNavbar ? 'chevron_left' : 'menu' }}</mat-icon>
+    </button>
+    <span class="header-title">{{ headerTitle | translate }}</span>
+  </mat-toolbar>
+</header>

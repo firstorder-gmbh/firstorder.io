@@ -1,0 +1,74 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'spaceranger';
+  font-weight: normal;
+  src: url('assets/fonts/spaceranger/spaceranger.ttf') format('truetype'); /* Safari, Android, iOS */
+}
+
+body {
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  margin: 0;
+
+  // Mirror icons with the .rtl-mirror class on right-to-left languages
+  [dir='rtl'] {
+    .rtl-mirror {
+      transform: scale(-1, 1);
+    }
+  }
+}
+
+@media print {
+  // Force to print colors, otherwise the material components will look white
+  color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+
+  body {
+    // Roboto not printing ok on Chrome, fallback on supported fonts
+    font-family: 'Helvetica Neue', sans-serif !important;
+    
+    mat-sidenav-container {
+      // Remove background color to save toner
+      background-color: transparent !important;
+      // Override the color from the template
+      color: black !important;
+
+      mat-sidenav-content {
+        // Remove the content margin if sidenav is expanded when hidden for print
+        margin: 0 !important;
+
+        // Remove max width and padding from containers to flow text depending on printer page sizes
+        .container {
+          min-width: 0 !important;
+          padding: 0 !important;
+        }
+
+        // Roboto not printing ok on Chrome, fallback on supported fonts
+        .mat-typography {
+          font-family: 'Helvetica Neue', sans-serif !important;
+          h1, h2, h3, h4, h5 {
+            font-family: 'Helvetica Neue', sans-serif !important;
+          }
+        }
+        .mat-button, .mat-raised-button, .mat-icon-button,
+        .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab {
+          font-family: 'Helvetica Neue', sans-serif !important;
+        }
+
+        // Define where a page break should occur when printing
+        h2 {
+          page-break-before: always; // always break before h2 elements, for chapters for example
+        }
+        h3, h4 {
+          page-break-after: avoid; // avoid breaking after subtitles, it looks weird
+        }
+        pre, blockquote {
+          page-break-inside: avoid; // avoid breaking inside pre and blockquotes
+        }
+      }
+    }
+  }
+  // Hide website controls when printing
+  .hide-print, .navbar, app-header, app-footer {
+    display: none !important;
+  }
+}

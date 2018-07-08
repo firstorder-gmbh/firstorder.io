@@ -1,0 +1,85 @@
+{
+  "plugins": [
+		"stylelint-order"
+	],
+  "rules": {
+    "block-closing-brace-newline-after": "always",
+    "block-closing-brace-newline-before": "always-multi-line",
+    "block-opening-brace-newline-after": "always-multi-line",
+    "block-opening-brace-space-before": "always-multi-line",
+    "color-hex-case": "lower",
+    "color-no-invalid-hex": true,
+    "declaration-block-no-duplicate-properties": [
+      true,
+      {
+        "ignore": [
+          "consecutive-duplicates-with-different-values"
+        ]
+      }
+    ],
+    "declaration-block-semicolon-newline-after": "always-multi-line",
+    "declaration-block-semicolon-newline-before": "never-multi-line",
+    "declaration-block-semicolon-space-after": "always-single-line",
+    "declaration-block-semicolon-space-before": "never",
+    "declaration-block-single-line-max-declarations": 1,
+    "declaration-block-trailing-semicolon": "always",
+    "declaration-property-value-blacklist": [
+      {
+        "/.*/": [
+          "initial"
+        ]
+      },
+      {
+        "message": "The `initial` value is not supported in IE."
+      }
+    ],
+    "function-calc-no-unspaced-operator": true,
+    "function-comma-space-after": "always-single-line",
+    "function-comma-space-before": "never",
+    "function-name-case": "lower",
+    "function-url-quotes": "always",
+    "function-whitespace-after": "always",
+    "indentation": 2,
+    "length-zero-no-unit": true,
+    "max-empty-lines": 1,
+    "max-line-length": 100,
+    "no-missing-end-of-source-newline": true,
+    "number-leading-zero": "always",
+    "number-no-trailing-zeros": true,
+    "order/order": [
+			"custom-properties",
+			"declarations"
+		],
+		"order/properties-alphabetical-order": true,
+    "property-case": "lower",
+    "selector-attribute-brackets-space-inside": "never",
+    "selector-attribute-operator-space-after": "never",
+    "selector-attribute-operator-space-before": "never",
+    "selector-combinator-space-after": "always",
+    "selector-combinator-space-before": "always",
+    "selector-max-id": 0,
+    "selector-pseudo-class-case": "lower",
+    "selector-pseudo-class-parentheses-space-inside": "never",
+    "selector-pseudo-element-case": "lower",
+    "selector-pseudo-element-colon-notation": "double",
+    "selector-pseudo-element-no-unknown": true,
+    "selector-type-case": "lower",
+    "shorthand-property-no-redundant-values": true,
+    "string-no-newline": true,
+    "string-quotes": "single",
+    "unit-case": "lower",
+    "unit-no-unknown": true,
+    "unit-whitelist": [
+      "px",
+      "%",
+      "deg",
+      "ms",
+      "em",
+      "vh",
+      "vw",
+      "vmin"
+    ],
+    "value-list-comma-space-after": "always-single-line",
+    "value-list-comma-space-before": "never"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "APP": {
+    "TITLE": "First Order",
+    "ORGANIZATION": "First Order GmbH",
+    "OWNER": "Philip-Cristian Sultanescu",
+    "ADDRESS_1": "Gabelsbergerstr. 87a",
+    "ADDRESS_2": "80333 München"
+  },
+  "IMPRINT": {
+    "TITLE": "بصمة",
+    "REGISTER_COURT": "Amtsgericht München",
+    "REGISTRATION_NO": "HRB 240857",
+    "TAX_ID": "DE318192217",
+    "TAX_NO": "143/137/11596"
+  },
+  "CHANGE_THEME": "تغيير الألوان",
+  "COPYRIGHT": "© 2018",
+  "HOME": "الصفحة الرئيسية"
+}
