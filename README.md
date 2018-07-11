@@ -4,6 +4,7 @@
 
 # firstorder.io
 [![Travis](https://img.shields.io/travis/firstorder-gmbh/firstorder.io.svg)](https://travis-ci.org/firstorder-gmbh/firstorder.io)
+[![CodeFactor](https://www.codefactor.io/repository/github/firstorder-gmbh/firstorder.io/badge)](https://www.codefactor.io/repository/github/firstorder-gmbh/firstorder.io)
 
 <em>ORDER, ORDER, ORDER!</em>
 
