@@ -3,11 +3,12 @@
 </p>
 
 # firstorder.io
+[![Travis](https://img.shields.io/travis/firstorder-gmbh/firstorder.io.svg)](https://travis-ci.org/firstorder-gmbh/firstorder.io)
 
-<em>No costs till your first order!</em>
+<em>ORDER, ORDER, ORDER!</em>
 
 <strong>First Order's mission is to standardize all websites</strong>
-with cutting edge technology and best web design standards that work on all devices and browsers.
+with cutting edge technology and best web design guidelines that support all devices and browsers.
 
 ## Packages & Features
 * [Angular 6](https://github.com/angular/angular): Single-page application
