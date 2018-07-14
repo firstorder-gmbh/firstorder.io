@@ -22,6 +22,10 @@ export class SidenavComponent implements OnDestroy, OnInit {
     .observe(Breakpoints.Handset)
     .pipe(map(result => result.matches));
   @ViewChild('navbar') navbar: MatSidenav;
+  navList = [
+    { class: 'home', icon: 'home', link: '/home', title: 'HOME' },
+    { class: 'imprint', icon: '§', link: '/imprint', title: 'IMPRINT.TITLE' }
+  ];
   selectedTitle: string;
 
   constructor(
@@ -39,6 +43,12 @@ export class SidenavComponent implements OnDestroy, OnInit {
         this.selectedTitle = data.state.root.firstChild.data.title;
       }
     });
+  }
+
+  closeNavbar(): void {
+    if (this.breakpointObserver.isMatched(Breakpoints.Handset)) {
+      this.sidenavService.closeNavbar();
+    }
   }
 
   navbarOpenedChange(isOpen: boolean): void {

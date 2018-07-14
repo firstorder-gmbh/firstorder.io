@@ -10,7 +10,7 @@ body {
   margin: 0;
 
   // Mirror icons with the .rtl-mirror class on right-to-left languages
-  [dir='rtl'] {
+  [dir=rtl] {
     .rtl-mirror {
       transform: scale(-1, 1);
     }

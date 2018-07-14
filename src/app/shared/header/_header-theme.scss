@@ -12,11 +12,23 @@
       background: transparent !important;
       transition: background 200ms ease-in;
     }
-    h1 {
-      color: mat-color($primary, default-contrast);
+
+    @media (max-width: 599px) {
+      .toggle-navbar {
+        margin-left: -8px;
+        [dir=rtl] & {
+          margin-left: 0;
+          margin-right: -8px;
+        }
+      }
     }
     .header-title {
-      font-family: spaceranger;
+      padding-left: 24px;
+      [dir=rtl] & {
+        padding-left: 0;
+        padding-right: 24px;
+      }
     }
+
   }
 }

@@ -1,4 +1,5 @@
 @import '../../../../node_modules/@angular/material/theming';
+@import './src/styles/constants';
 
 @mixin sidenav-theme($theme) {
   $primary: map-get($theme, primary);
@@ -7,26 +8,32 @@
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
 
-  .sidenav {
-    // Section divider
-    h3 {
-      background: rgba(mat-color($foreground, secondary-text), 0.32);
-      color: mat-color($primary, default-contrast);
+  .mat-sidenav {
+    @media screen and (min-width: 600px) {
+      .mat-toolbar-row, .mat-toolbar-single-row {
+        padding: 0 $padding-tablet !important;
+      }
     }
-
     // Sidenav navigation items
-    li {
-      border-color: rgba(mat-color($foreground, secondary-text), 0.06);
-      color: mat-color($foreground, secondary-text);
-
-      > a {
-        color: mat-color($foreground, secondary-text);
-
-        &.is-selected,
-        &:hover,
-        &:focus {
-          background: mat-color($background, background);
-          color: mat-color($primary);
+    // md-list-icon padding on lists 
+    // https://github.com/angular/material2/issues/5090
+    .mat-nav-list .mat-list-item {
+      &.active-link {
+        background-color: mat-color($primary, 0.12);
+        color: mat-color($primary);
+      }
+      .mat-list-item-content {
+        @media screen and (min-width: 600px) {
+          padding: 0 $padding-tablet !important;
+        }
+        .mat-list-icon {
+          padding: 0;
+        }
+        .mat-list-text:not(:nth-child(2)) {
+          padding-left: 32px !important;
+          [dir=rtl] & {
+            padding-right: 32px !important;
+          }
         }
       }
     }

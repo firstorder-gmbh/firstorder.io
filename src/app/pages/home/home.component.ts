@@ -43,6 +43,6 @@ export class HomeComponent {
     this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube-nocookie.com/embed/${VIDEO_ID}`
       + `?autoplay=1&controls=0&disablekb=1&loop=1&modestbranding=1&mute=1&playlist=${VIDEO_ID}&rel=0&showinfo=0`);
 
-    this.headerService.headerTitle.next('APP.TITLE');
+    this.headerService.headerTitle.next('HOME');
   }
 }
