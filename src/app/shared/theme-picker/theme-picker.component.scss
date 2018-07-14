@@ -13,6 +13,9 @@ $theme-picker-accent-stripe-size: 6px;
     flex: 0 0 auto;
     overflow: hidden;
     padding: 0;
+    .mat-icon {
+      margin-left: 0 !important; // fix margin for rtl
+    }
   }
 
   .theme-picker-swatch {
