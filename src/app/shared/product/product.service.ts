@@ -41,7 +41,7 @@ export class ProductService {
              }
             } else {
               // search empty, so we can sort results after creating only one composite index
-              query.orderBy('rating', 'desc').orderBy('updated', 'desc');
+              query = query.orderBy('rating', 'desc').orderBy('updated', 'desc');
             }
 
             // return only first 100 results

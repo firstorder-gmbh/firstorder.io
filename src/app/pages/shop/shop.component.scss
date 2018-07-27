@@ -25,7 +25,16 @@
       
     &:not(.opened) {
       cursor: pointer;
+      .mat-card {
+        box-sizing: border-box;
+        height: 100%;
+        .mat-card-title {
+          font-size: 16px;
+        }
+      }
       @media (max-width: 599px) {
+        // List view, to be used when more products available for a more efficient list scrolling
+        /*  
         margin: 0;
         width: 100%;
         .mat-card {
@@ -34,6 +43,7 @@
           .mat-card-image {
             height: 56px; // 16:9 ratio
             margin: 0 20px 0 -16px;
+            min-width: 100px;
             width: 100px;
             [dir=rtl] & {
               margin: 0 -16px 0 20px;
@@ -46,16 +56,33 @@
             text-overflow: ellipsis;
             white-space: nowrap;
           }
+        } */
+
+        // 2 column view, 32px gutters, 16px margins
+        width: calc(50vw - 32px);
+        .mat-card {
+          padding: 24px 16px 16px;
+          .mat-card-image {
+            height: calc((50vw - 32px) / 16 * 9); // 16:9 ratio
+            min-height: calc((50vw - 40px) / 16 * 9); // 16:9 ratio
+          }
         }
       }
-      @media (min-width: 600px) {
-        .mat-card {
-          box-sizing: border-box;
-          height: 100%;
-          .mat-card-image {
-            height: 194px; // 16:9 ratio
-            margin-bottom: 20px;
-          }
+
+      @media (min-width: 600px) and (max-width: 767px) {
+        // 2 column view, 32px gutters, 24px margins
+        width: calc(50vw - 40px);
+        .mat-card-image {
+          height: calc((50vw - 40px) / 16 * 9); // 16:9 ratio
+          min-height: calc((50vw - 40px) / 16 * 9); // 16:9 ratio
+        }
+      }
+      @media (min-width: 768px) {
+        // flex colum view, fixed height and width
+        .mat-card-image {
+          height: 194px; // 16:9 ratio
+          margin-bottom: 20px;
+          min-height: 194px; // 16:9 ratio
         }
       }
     }
@@ -72,6 +99,7 @@
       width: 100%;
       z-index: 3;
       .mat-card {
+        border-radius: 0;
         box-sizing: border-box;
         min-height: 100%;
         .product-toolbar {
@@ -99,7 +127,9 @@
         @media (max-width: 599px) {
           padding: 16px;
           .mat-card-image {
+            height: calc(100vw / 16 * 9);  // 16:9 ratio
             margin: -16px -16px 16px -16px;
+            min-height: calc(100vw / 16 * 9);  // 16:9 ratio
           }
           .cart-button {
             width: 100%;
@@ -112,6 +142,7 @@
           .mat-card-image {
             height: 194px; // 16:9 ratio
             margin: 0 32px 0 0;
+            min-height: 194px; // 16:9 ratio
             width: 344px;
             [dir=rtl] & {
               margin: 0 0 0 20px;

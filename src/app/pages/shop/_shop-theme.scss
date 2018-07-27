@@ -7,8 +7,7 @@
 
   app-shop {
     .product-toolbar {
-      background: linear-gradient(to bottom, 
-      mat-color($primary, 0.7) 0%, rgba(255, 255, 255, 0) 100%);
+      background: transparent;
     }
     .ratings {
       box-shadow: none;
