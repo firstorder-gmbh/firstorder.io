@@ -26,6 +26,7 @@ describe('StyleManager', () => {
 
   it('should add stylesheet to head', () => {
     styleManager.setStyle('test', 'test.css');
+    // tslint:disable-next-line: no-unnecessary-type-assertion
     const styleEl = document.head.querySelector('.style-manager-test') as HTMLLinkElement;
     expect(styleEl).not.toBeNull();
     expect(styleEl.href.endsWith('test.css')).toBe(true);
@@ -33,6 +34,7 @@ describe('StyleManager', () => {
 
   it('should change existing stylesheet', () => {
     styleManager.setStyle('test', 'test.css');
+    // tslint:disable-next-line: no-unnecessary-type-assertion
     const styleEl = document.head.querySelector('.style-manager-test') as HTMLLinkElement;
     expect(styleEl).not.toBeNull();
     expect(styleEl.href.endsWith('test.css')).toBe(true);
@@ -43,11 +45,13 @@ describe('StyleManager', () => {
 
   it('should remove existing stylesheet', () => {
     styleManager.setStyle('test', 'test.css');
+    // tslint:disable-next-line: no-unnecessary-type-assertion
     let styleEl = document.head.querySelector('.style-manager-test') as HTMLLinkElement;
     expect(styleEl).not.toBeNull();
     expect(styleEl.href.endsWith('test.css')).toBe(true);
 
     styleManager.removeStyle('test');
+    // tslint:disable-next-line: no-unnecessary-type-assertion
     styleEl = document.head.querySelector('.style-manager-test') as HTMLLinkElement;
     expect(styleEl).toBeNull();
   });

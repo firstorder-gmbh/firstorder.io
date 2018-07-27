@@ -20,6 +20,7 @@
       "ban-single-arg-parens"
     ],
     "arrow-return-shorthand": true,
+    "ban-comma-operator": true,
     "banana-in-box": true,
     "binary-expression-operand-order": true,
     "callable-types": true,
@@ -146,14 +147,13 @@
       true,
       "check-parameters"
     ],
-    "no-empty": true,
+    "no-empty": [true, "allow-empty-catch"],
     "no-empty-interface": true,
     "no-eval": true,
+    "no-floating-promises": true,
     "no-forward-ref": true,
-    "no-implicit-dependencies": [
-      true,
-      "dev"
-    ],
+    "no-implicit-dependencies": true,
+    "no-import-side-effect": {"severity": "warning"},
     "no-inferrable-types": true,
     "no-input-rename": true,
     "no-internal-module": true,
@@ -168,6 +168,7 @@
     "no-null-keyword": false,
     "no-output-on-prefix": true,
     "no-output-rename": true,
+    "no-parameter-reassignment": true,
     "no-redundant-jsdoc": true,
     "no-reference": true,
     "no-require-imports": true,
@@ -184,12 +185,15 @@
       "allow-static-only"
     ],
     "no-unnecessary-initializer": true,
+    "no-unnecessary-type-assertion": true,
     "no-unsafe-finally": true,
     "no-unused-expression": [
       true,
       "allow-fast-null-checks"
     ],
     "no-unused-variable": true,
+    "no-use-before-declare": true,
+    "no-void-expression": [true, "ignore-arrow-function-shorthand"],
     "no-var-keyword": true,
     "object-literal-key-quotes": [
       true,

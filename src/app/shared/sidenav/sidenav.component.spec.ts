@@ -8,7 +8,7 @@ describe('SidenavComponent', () => {
   let fixture: ComponentFixture<SidenavComponent>;
 
   beforeEach(fakeAsync(() => {
-    TestBed.configureTestingModule({
+    void TestBed.configureTestingModule({
       declarations: [ SidenavComponent ]
     })
     .compileComponents();

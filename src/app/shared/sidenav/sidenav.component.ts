@@ -45,9 +45,9 @@ export class SidenavComponent implements OnDestroy, OnInit {
     });
   }
 
-  closeNavbar(): void {
+  async closeNavbar(): Promise<void> {
     if (this.breakpointObserver.isMatched(Breakpoints.Handset)) {
-      this.sidenavService.closeNavbar();
+      await this.sidenavService.closeNavbar();
     }
   }
 

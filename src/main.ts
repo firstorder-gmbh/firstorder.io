@@ -1,3 +1,4 @@
+// tslint:disable: no-import-side-effect
 import 'hammerjs';
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
@@ -10,5 +11,5 @@ if (environment.production) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  platformBrowserDynamic().bootstrapModule(AppModule);
+  void platformBrowserDynamic().bootstrapModule(AppModule);
 });

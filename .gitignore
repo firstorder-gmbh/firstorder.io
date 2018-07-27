@@ -4,6 +4,9 @@
 
 package-lock.json
 
+# Firebase #
+/functions/node_modules
+
 # Built #
 /__build__/
 /__server_build__/

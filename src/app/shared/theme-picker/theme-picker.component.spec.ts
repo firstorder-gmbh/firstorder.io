@@ -4,7 +4,7 @@ import { AppTestingModule } from '../../testing/testing.module';
 
 describe('ThemePicker', () => {
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
+    void TestBed.configureTestingModule({
       imports: [ThemePickerModule, AppTestingModule]
     }).compileComponents();
   }));
