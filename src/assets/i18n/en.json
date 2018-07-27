@@ -13,6 +13,13 @@
     "TAX_ID": "DE318192217",
     "TAX_NO": "143/137/11596"
   },
+  "SHOP": {
+    "TITLE": "Shop"
+  },
+  "SEARCH": {
+    "PLACEHOLDER": "Search"
+  },
+  "ADD_TO_CART": "Add to Cart",
   "CHANGE_THEME": "Change Theme",
   "COPYRIGHT": "© 2018",
   "HOME": "Home"

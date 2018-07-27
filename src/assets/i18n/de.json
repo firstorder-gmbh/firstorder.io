@@ -13,6 +13,13 @@
     "TAX_ID": "DE318192217",
     "TAX_NO": "143/137/11596"
   },
+  "SHOP": {
+    "TITLE": "Shop"
+  },
+  "SEARCH": {
+    "PLACEHOLDER": "Suche"
+  },
+  "ADD_TO_CART": "In den Einkaufswagen",
   "CHANGE_THEME": "Farbschema ändern",
   "COPYRIGHT": "© 2018",
   "HOME": "Startseite"

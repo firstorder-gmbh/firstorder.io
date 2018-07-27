@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import { FooterService } from './../../shared/footer/footer.service';
-import { HeaderService } from './../../shared/header/header.service';
+import { FooterService } from '../../shared/footer/footer.service';
+import { HeaderService } from '../../shared/header/header.service';
 
 @Component({
   selector: 'app-imprint',

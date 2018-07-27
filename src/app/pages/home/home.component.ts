@@ -5,8 +5,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { FooterService } from './../../shared/footer/footer.service';
-import { HeaderService } from './../../shared/header/header.service';
+import { FooterService } from '../../shared/footer/footer.service';
+import { HeaderService } from '../../shared/header/header.service';
 
 @Component({
   selector: 'app-home',

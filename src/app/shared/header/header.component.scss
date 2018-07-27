@@ -1,1 +1,23 @@
-
+.header-toolbar {
+  .flex-spacer {
+    flex: 1 1 auto;
+  }
+  .back-button, .search-form {
+    display: none;
+  }
+  &.search-open {
+    .toggle-navbar, .header-title, .flex-spacer, .search-button {
+      display: none;
+    }
+    .back-button {
+      display: block;
+    }
+    .search-form {
+      display: block;
+      width: 100%;
+      .mat-form-field {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,13 +1,40 @@
 <header class="header">
   <mat-toolbar class="header-toolbar" [ngClass]="headerClass" color="primary">
-    <button
-        class="toggle-navbar"
-        type="button"
-        aria-label="Toggle navbar"
-        mat-icon-button
-        (click)="toggleNavbar()">
+    <button type="button" mat-icon-button class="toggle-navbar" aria-label="Toggle navbar" (click)="toggleNavbar()">
       <mat-icon aria-label="Side nav toggle icon" class="rtl-mirror">{{ isOpenNavbar ? 'chevron_left' : 'menu' }}</mat-icon>
     </button>
+
+    <button type="button" class="back-button" mat-icon-button aria-label="Back" (click)="goBack()">
+      <mat-icon class="rtl-mirror">arrow_back</mat-icon>
+    </button>
+
     <h1 class="header-title">{{ headerTitle | translate }}</h1>
+
+    <div class="flex-spacer"></div>
+
+    <form [formGroup]="searchForm" class="search-form">
+      <mat-form-field floatLabel="never">
+        <input type="text" matInput placeholder="{{ 'SEARCH.PLACEHOLDER' | translate }}" formControlName="searchInput" 
+            [matAutocomplete]="autoGroup" (input)="onSearchChange($event.target.value)">
+
+        <mat-autocomplete #autoGroup="matAutocomplete" mdDropdownItems class="search-autocomplete">
+          <mat-optgroup *ngFor="let searchGroup of searchGroupOptions$ | async" [label]="searchGroup.group">
+            <mat-option *ngFor="let option of searchGroup.options" [value]="option" 
+                (click)="onSearchChange(option)">
+              {{ option }}
+            </mat-option>
+          </mat-optgroup>
+        </mat-autocomplete>
+
+        <button type="button" *ngIf="searchForm.get('searchInput').value" matSuffix mat-icon-button aria-label="Clear"
+            (click)="searchForm.get('searchInput').setValue('')">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </form>
+
+    <button type="button" mat-icon-button (click)="toggleSearch()" class="search-button">
+      <mat-icon aria-label="Search button">search</mat-icon>
+    </button>
   </mat-toolbar>
 </header>

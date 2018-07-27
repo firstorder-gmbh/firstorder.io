@@ -9,10 +9,14 @@
     background: mat-color($primary);
     transition: background 200ms ease-out;
     &.transparent:not(:hover) {
-      background: transparent !important;
+      background: transparent;
       transition: background 200ms ease-in;
     }
-
+    &.search-open {
+      background: white !important;
+      color: rgba(0, 0, 0, 0.87) !important;
+      transition: background 200ms ease-in;
+    }
     @media (max-width: 599px) {
       .toggle-navbar {
         margin-left: -8px;
@@ -22,13 +26,20 @@
         }
       }
     }
-    .header-title {
+    .header-title, .search-form {
       padding-left: 24px;
       [dir=rtl] & {
         padding-left: 0;
         padding-right: 24px;
       }
     }
-
+  }
+  .search-autocomplete {
+    max-height: calc(100vh - 64px) !important;
+  }
+  @media (max-width: 599px) {
+    .search-autocomplete {
+      max-height: calc(100vh - 60px) !important;
+    }
   }
 }

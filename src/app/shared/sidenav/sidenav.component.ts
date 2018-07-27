@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router, RoutesRecognized } from '@angular/router';
 
-import { LanguageService } from './../translate/language.service';
-import { SidenavService } from './../sidenav/sidenav.service';
+import { LanguageService } from '../translate/language.service';
+import { SidenavService } from './sidenav.service';
 
 @Component({
   selector: 'app-sidenav',
