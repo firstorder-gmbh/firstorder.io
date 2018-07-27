@@ -6,6 +6,7 @@ package-lock.json
 
 # Firebase #
 /functions/node_modules
+/functions/lib
 
 # Built #
 /__build__/

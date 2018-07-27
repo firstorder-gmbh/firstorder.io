@@ -13,13 +13,16 @@ export const helloWorld = functions.https.onRequest((request, response) => {
   response.send('Hello from Firebase!');
 });
 
+ // curl https://us-central1-$(firebase use).cloudfunctions.net/duplicateProducts
 export const duplicateProducts = functions.https.onRequest((request, response) => {
   // Copy firestore collection to a new document
-  admin.initializeApp();
+  if (!admin.apps.length) {
+    admin.initializeApp();
+  }
   const firestore = admin.firestore();
-  firestore.collection('products').get().then(query => {
+  void firestore.collection('products').get().then(query => {
       query.forEach (doc => {
-          const promise = firestore.collection('products').doc().set(doc.data());
+          void firestore.collection('products').doc().set(doc.data());
       });
   });
   response.send('Products copied!');
