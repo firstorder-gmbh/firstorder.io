@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidenav-container" [class.desktop]="isDesktop" [dir]="dir">
+<mat-sidenav-container class="sidenav-container" [class.desktop]="isDesktop">
   <mat-sidenav
       #navbar
       class="sidenav navbar"
@@ -23,7 +23,7 @@
     </mat-nav-list>
   </mat-sidenav>
 
-  <mat-sidenav-content>
+  <mat-sidenav-content [ngClass]="contentClass">
     <app-header [dir]="dir"></app-header>
     <main class="main">
       <router-outlet></router-outlet>

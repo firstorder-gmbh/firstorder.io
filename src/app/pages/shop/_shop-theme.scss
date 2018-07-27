@@ -6,9 +6,23 @@
   $foreground: map-get($theme, foreground);
 
   app-shop {
-    // Shop list theme
-  }
-  app-shop-detail {
-    // Shop detail theme
+    .product-toolbar {
+      background: linear-gradient(to bottom, 
+      mat-color($primary, 0.7) 0%, rgba(255, 255, 255, 0) 100%);
+    }
+    .ratings {
+      box-shadow: none;
+      margin: 4px 0;
+      .mat-button-toggle-label-content {
+        line-height: inherit;
+        padding: 0;
+        .mat-icon {
+          color: #fed430;
+          font-size: 16px;
+          height: 16px;
+          width: 16px;
+        }
+      }
+    }
   }
 }

@@ -5,6 +5,7 @@ import { MatDrawerToggleResult, MatSidenav } from '@angular/material';
 @Injectable()
 export class SidenavService {
 
+  contentClass: BehaviorSubject<string> = new BehaviorSubject(null);
   isOpenDetails: BehaviorSubject<boolean> = new BehaviorSubject(false);
   isOpenNavbar: BehaviorSubject<boolean> = new BehaviorSubject(false);
 

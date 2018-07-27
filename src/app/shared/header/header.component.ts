@@ -2,6 +2,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Input, NgModule, ViewChild } from '@angular/core';
+import { Direction } from '@angular/cdk/bidi';
 import { map, startWith } from 'rxjs/operators';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatAutocompleteTrigger, MatButtonModule, MatFormFieldModule,
@@ -16,6 +17,7 @@ import { SidenavService } from '../sidenav/sidenav.service';
 
 export interface SearchGroup {
   group: string;
+  key: string;
   options: Array<string>;
 }
 
@@ -36,7 +38,7 @@ export const _filter = (options: Array<string>, value: string): Array<string> =>
 export class HeaderComponent {
   @ViewChild(MatAutocompleteTrigger) autocompleteTrigger: MatAutocompleteTrigger;
   currentLang: string;
-  @Input() dir: string;
+  @Input() dir: Direction;
   headerClass: string;
   headerTitle: string;
   isOpenNavbar = this.sidenavService.isOpenNavbar.getValue();
@@ -52,8 +54,8 @@ export class HeaderComponent {
   searchProductsAutocomplete: any;
 
   constructor(
+    public productService: ProductService,
     protected afs: AngularFirestore,
-    protected productService: ProductService,
     protected translate: TranslateService,
     private headerService: HeaderService,
     private fb: FormBuilder,
@@ -108,16 +110,16 @@ export class HeaderComponent {
   }
 
   onSearchChange(search: string | null): void {
-    this.productService.tag$.next(search ? search.toLocaleLowerCase() : null);
+    this.productService.search$.next(search ? search.toLocaleLowerCase() : null);
   }
 
   searchProducts(option: string): void {
     this.onSearchChange(option);
-    this.router.navigate(['/shop']);
+    void this.router.navigate(['/shop']);
   }
 
   showProduct(product: Product): void {
-    this.router.navigate(['/shop', product.id]);
+    void this.router.navigate(['/shop', product.id]);
   }
 
   async toggleNavbar(): Promise<void> {
@@ -144,6 +146,7 @@ export class HeaderComponent {
     if (value) {
       return this.searchGroups
         .map(searchGroup => ({
+          key: searchGroup.key,
           group: searchGroup.group,
           options: _filter(searchGroup.options, value)
         }))
@@ -157,11 +160,11 @@ export class HeaderComponent {
     if (this.searchProductsAutocomplete) {
       this.searchGroups = [];
       // Add predefined options
-      Object.keys(this.searchProductsAutocomplete).map(key => {
-        const obj = this.searchProductsAutocomplete[key];
-        const group = obj[this.currentLang] || obj.en; // translate or default to english
+      Object.keys(this.searchProductsAutocomplete).map(index => {
+        const obj = this.searchProductsAutocomplete[index];
+        const group = obj.group[this.currentLang] || obj.group.en; // translate or default to english
         const options = obj.options[this.currentLang] || obj.options.en;
-        this.searchGroups.push({ group, options });
+        this.searchGroups.push({ key: obj.key, group, options });
       });
       this.searchForm.get('searchInput').updateValueAndValidity(); // trigger filtering
     }

@@ -3,6 +3,7 @@
     /* When the sidenav is fixed, don't constrain the height of the sidenav container. 
       This allows the `<body>` to be our scrolling element for mobile and tablet layouts. */
     flex: 1 0 auto;
+    min-height: 100vh;
   }
   &.desktop {
     bottom: 0;
@@ -50,6 +51,10 @@
   flex-direction: column;
   height: inherit;
   min-height: 100vh;
+  &.position-absolute {
+    position: absolute;
+    width: fill-available;
+  }
   main {
     flex: 1 0 auto;
   }

@@ -13,8 +13,8 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
-      { path: 'shop',  component: ShopComponent },
-      { path: 'shop/:id',  component: ShopComponent },
+      { path: 'shop', redirectTo: 'shop/', pathMatch: 'full' },
+      { path: 'shop/:id', component: ShopComponent },
       { path: 'imprint', component: ImprintComponent }
     ]
   },

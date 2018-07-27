@@ -10,7 +10,7 @@
 
     <form [formGroup]="searchForm" class="search-form">
       <mat-form-field floatLabel="never">
-        <button type="button" class="back-button" matPrefix mat-icon-button aria-label="Close Search" (click)="closeSearch(searchAutocomplete)">
+        <button type="button" class="back-button" matPrefix mat-icon-button aria-label="Close Search" (click)="closeSearch()">
           <mat-icon class="rtl-mirror">arrow_back</mat-icon>
         </button>
 
@@ -18,15 +18,18 @@
             [matAutocomplete]="searchAutocomplete" (input)="onSearchChange($event.target.value)" autofocus>
 
         <mat-autocomplete #searchAutocomplete="matAutocomplete" mdDropdownItems class="search-autocomplete">
-          <mat-option *ngFor="let product of productService.products$ | async" [value]="product.names[currentLang] || product.names['en']" 
+          <mat-option *ngFor="let product of productService.products$ | async | slice:0:3 " [value]="product.names[currentLang] || product.names['en']" 
               (click)="showProduct(product)">
             <mat-icon class="material-icons" aria-label="Open">shop</mat-icon>
             <span *ngIf="product.names">{{ product.names[currentLang] || product.names['en'] }}</span>
           </mat-option>
-          <mat-optgroup *ngFor="let searchGroup of searchGroupOptions$ | async" [label]="searchGroup.group">
+          <mat-optgroup *ngFor="let searchGroup of searchGroupOptions$ | async" [label]="searchGroup.group" [ngSwitch]="searchGroup.key">
             <mat-option *ngFor="let option of searchGroup.options" [value]="option" 
                 (click)="searchProducts(option)">
-              <mat-icon aria-label="Filter">search</mat-icon>
+              <mat-icon aria-label="category" *ngSwitchCase="'category'">category</mat-icon>
+              <mat-icon aria-label="size" *ngSwitchCase="'size'">straighten</mat-icon>
+              <mat-icon aria-label="color" *ngSwitchCase="'color'" [style.color]="option">colorize</mat-icon>
+              <mat-icon aria-label="option" *ngSwitchDefault>search</mat-icon>
               <span>{{ option }}</span>
             </mat-option>
           </mat-optgroup>

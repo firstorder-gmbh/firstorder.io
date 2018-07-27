@@ -3,8 +3,6 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Direction } from '@angular/cdk/bidi';
 import { MatSidenav } from '@angular/material';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Router, RoutesRecognized } from '@angular/router';
 
 import { LanguageService } from '../translate/language.service';
@@ -17,6 +15,7 @@ import { SidenavService } from './sidenav.service';
 })
 export class SidenavComponent implements OnDestroy, OnInit {
 
+  contentClass: string;
   dir: Direction;
   isDesktop: boolean;
   isDesktop$ = this.breakpointObserver
@@ -43,6 +42,10 @@ export class SidenavComponent implements OnDestroy, OnInit {
       this.dir = dir;
     });
 
+    this.sidenavService.contentClass.subscribe((contentClass: string) => {
+      this.contentClass = contentClass;
+    });
+
     this.router.events.subscribe(data => {
       if (data instanceof RoutesRecognized) {
         this.selectedTitle = data.state.root.firstChild.data.title;
@@ -51,7 +54,7 @@ export class SidenavComponent implements OnDestroy, OnInit {
   }
 
   async closeNavbar(): Promise<void> {
-    if (this.breakpointObserver.isMatched(Breakpoints.Handset)) {
+    if (!this.isDesktop) {
       await this.sidenavService.closeNavbar();
     }
   }
