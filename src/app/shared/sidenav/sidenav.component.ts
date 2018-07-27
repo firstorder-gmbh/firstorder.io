@@ -24,6 +24,7 @@ export class SidenavComponent implements OnDestroy, OnInit {
   @ViewChild('navbar') navbar: MatSidenav;
   navList = [
     { class: 'home', icon: 'home', link: '/home', title: 'HOME' },
+    { class: 'shop', icon: 'shop', link: '/shop', title: 'SHOP.TITLE' },
     { class: 'imprint', icon: '§', link: '/imprint', title: 'IMPRINT.TITLE' }
   ];
   selectedTitle: string;

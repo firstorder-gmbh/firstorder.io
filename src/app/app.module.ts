@@ -69,6 +69,7 @@ import { environment } from '../environments/environment';
 // Pages
 import { HomeComponent } from './pages/home/home.component';
 import { ImprintComponent } from './pages/imprint/imprint.component';
+import { ShopComponent } from './pages/shop/shop.component';
 
 // Shared
 import { FooterModule } from './shared/footer/footer.component';
@@ -152,6 +153,7 @@ export class MaterialModule { }
     AppComponent,
     HomeComponent,
     ImprintComponent,
+    ShopComponent,
     SidenavComponent
   ],
   imports: [

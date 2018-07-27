@@ -1,0 +1,6 @@
+<div class="container">
+  <section class="section-tablet" *ngIf="(isHandset$ | async) === false">
+  </section>
+  <section class="section-handset" *ngIf="isHandset$ | async">
+  </section>
+</div>
