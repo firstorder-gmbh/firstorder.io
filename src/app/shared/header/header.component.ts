@@ -1,12 +1,12 @@
 import { AngularFirestore } from 'angularfire2/firestore';
-import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { Component, NgModule } from '@angular/core';
+import { Component, ElementRef, NgModule, ViewChild } from '@angular/core';
 import { firestore } from 'firebase';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule, MatButtonModule, MatFormFieldModule,
+import { MatAutocompleteModule, MatAutocompleteTrigger, MatButtonModule, MatFormFieldModule,
   MatIconModule, MatInputModule, MatToolbarModule } from '@angular/material';
-import { map, startWith, switchMap } from 'rxjs/operators';
+import { debounceTime, map, startWith, switchMap } from 'rxjs/operators';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from './header.service';
@@ -40,6 +40,8 @@ export const _filter = (options: Array<string>, value: string): Array<string> =>
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  @ViewChild(MatAutocompleteTrigger) autocompleteTrigger: MatAutocompleteTrigger;
+  currentLang: string;
   headerClass: string;
   headerTitle: string;
   isOpenNavbar = this.sidenavService.isOpenNavbar.getValue();
@@ -53,14 +55,15 @@ export class HeaderComponent {
   });
   searchGroupOptions$: Observable<Array<SearchGroup>>;
   searchGroups: Array<SearchGroup> = [];
+  @ViewChild('searchInput') searchInput: ElementRef;
   searchProductsAutocomplete: any;
 
   constructor(
-      protected afs: AngularFirestore,
-      private headerService: HeaderService,
-      private fb: FormBuilder,
-      private sidenavService: SidenavService,
-      private translate: TranslateService
+    protected afs: AngularFirestore,
+    protected translate: TranslateService,
+    private headerService: HeaderService,
+    private fb: FormBuilder,
+    private sidenavService: SidenavService
   ) {
     afs.collection<any>('autocompletes').doc('search-products').valueChanges()
     .subscribe(data => {
@@ -69,6 +72,7 @@ export class HeaderComponent {
     });
 
     translate.onLangChange.subscribe(() => {
+      this.currentLang = translate.currentLang;
       this.translateSearchGroups();
     });
 
@@ -85,15 +89,20 @@ export class HeaderComponent {
     this.products$ = combineLatest(
       this.search$
     ).pipe(
-      switchMap(([search]) =>
-        afs.collection('products', ref => {
-          let query: firestore.CollectionReference | firestore.Query = ref;
+      debounceTime(300), // delay execution to reduce api calls
+      switchMap(([search]) => {
+        if (search) {
+          return afs.collection('products', ref => {
+            let query: firestore.CollectionReference | firestore.Query = ref;
 
-          if (search) { query = query.where(`tags.${search}`, '==', true); }
+            if (search) { query = query.where(`tags.${search}`, '==', true); }
 
-          return query;
-        }).valueChanges() as Observable<Array<Product>>
-      )
+            return query.limit(10);
+          }).valueChanges() as Observable<Array<Product>>;
+        } else {
+          return of([]);
+        }
+      })
     );
 
     this.products$.subscribe(products => {
@@ -113,9 +122,18 @@ export class HeaderComponent {
     });
   }
 
-  goBack(): void {
+  clearSearch(): void {
+    this.searchForm.get('searchInput').setValue('');
+    setTimeout(() => {
+      this.searchInput.nativeElement.focus();
+      this.autocompleteTrigger.openPanel();
+    });
+  }
+
+  closeSearch(): void {
     if (this.headerClass) {
       this.headerClass = this.headerClass.replace('search-open', '').trim();
+      this.autocompleteTrigger.closePanel();
     }
   }
 
@@ -123,15 +141,21 @@ export class HeaderComponent {
     this.search$.next(search.toLocaleLowerCase());
   }
 
-  toggleNavbar(): void {
-    this.sidenavService.toggleNavbar();
+  async toggleNavbar(): Promise<void> {
+    await this.sidenavService.toggleNavbar();
   }
 
   toggleSearch(): void {
     if (!this.headerClass) {
       this.headerClass = 'search-open';
+      setTimeout(() => {
+        this.searchInput.nativeElement.focus();
+      });
     } else if (this.headerClass.indexOf('search-open') === -1) {
       this.headerClass += ' search-open';
+      setTimeout(() => {
+        this.searchInput.nativeElement.focus();
+      });
     } else {
       this.headerClass = this.headerClass.replace('search-open', '').trim();
     }
@@ -153,11 +177,11 @@ export class HeaderComponent {
   private translateSearchGroups(): void {
     if (this.searchProductsAutocomplete) {
       this.searchGroups = [];
-      // Read and translate groups and options
+      // Add predefined options
       Object.keys(this.searchProductsAutocomplete).map(key => {
         const obj = this.searchProductsAutocomplete[key];
-        const group = obj[this.translate.currentLang] || obj.en; // translate or default to english
-        const options = obj.options[this.translate.currentLang] || obj.options.en;
+        const group = obj[this.currentLang] || obj.en; // translate or default to english
+        const options = obj.options[this.currentLang] || obj.options.en;
         this.searchGroups.push({ group, options });
       });
       this.searchForm.get('searchInput').updateValueAndValidity(); // trigger filtering

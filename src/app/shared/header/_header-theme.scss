@@ -17,6 +17,36 @@
       color: rgba(0, 0, 0, 0.87) !important;
       transition: background 200ms ease-in;
     }
+    .back-button {
+      margin-right: 24px;
+      [dir=rtl] & {
+        margin-left: 24px;
+        margin-right: 0;
+      }
+    }
+    .search-form {
+      height: 100%;
+      .mat-form-field {
+        height: 100%;
+        .mat-form-field-wrapper {
+          height: 100%;
+          padding-bottom: 0;
+          .mat-form-field-flex {
+            align-items: center;
+            height: 100%;
+          }
+          .mat-form-field-infix {
+            border-top: 0;
+            .mat-input-element {
+              height: 100%;
+            }
+          }
+          .mat-form-field-underline, .mat-form-field-subscript-wrapper {
+            display: none;
+          }
+        }
+      }
+    }
     @media (max-width: 599px) {
       .toggle-navbar {
         margin-left: -8px;
@@ -26,7 +56,7 @@
         }
       }
     }
-    .header-title, .search-form {
+    .header-title {
       padding-left: 24px;
       [dir=rtl] & {
         padding-left: 0;
@@ -34,12 +64,23 @@
       }
     }
   }
+
   .search-autocomplete {
-    max-height: calc(100vh - 64px) !important;
-  }
-  @media (max-width: 599px) {
-    .search-autocomplete {
-      max-height: calc(100vh - 60px) !important;
+    @media (min-width: 600px) {
+      max-height: calc(100vh - 64px - 16px) !important;
+    }
+    .mat-option .mat-icon {
+      margin-right: 24px;
+      [dir=rtl] & {
+        margin-left: 24px;
+        margin-right: 0;
+      }
+    }
+    .mat-optgroup .mat-option:not(.mat-option-multiple) {
+      padding-left: 16px;
+      [dir=rtl] & {
+        padding-right: 16px;
+      }
     }
   }
 }

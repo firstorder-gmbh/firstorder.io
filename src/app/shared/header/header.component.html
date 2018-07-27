@@ -4,30 +4,36 @@
       <mat-icon aria-label="Side nav toggle icon" class="rtl-mirror">{{ isOpenNavbar ? 'chevron_left' : 'menu' }}</mat-icon>
     </button>
 
-    <button type="button" class="back-button" mat-icon-button aria-label="Back" (click)="goBack()">
-      <mat-icon class="rtl-mirror">arrow_back</mat-icon>
-    </button>
-
     <h1 class="header-title">{{ headerTitle | translate }}</h1>
 
     <div class="flex-spacer"></div>
 
     <form [formGroup]="searchForm" class="search-form">
       <mat-form-field floatLabel="never">
-        <input type="text" matInput placeholder="{{ 'SEARCH.PLACEHOLDER' | translate }}" formControlName="searchInput" 
-            [matAutocomplete]="autoGroup" (input)="onSearchChange($event.target.value)">
+        <button type="button" class="back-button" matPrefix mat-icon-button aria-label="Close Search" (click)="closeSearch(searchAutocomplete)">
+          <mat-icon class="rtl-mirror">arrow_back</mat-icon>
+        </button>
 
-        <mat-autocomplete #autoGroup="matAutocomplete" mdDropdownItems class="search-autocomplete">
+        <input type="text" matInput placeholder="{{ 'SEARCH.PLACEHOLDER' | translate }}" #searchInput formControlName="searchInput" 
+            [matAutocomplete]="searchAutocomplete" (input)="onSearchChange($event.target.value)" autofocus>
+
+        <mat-autocomplete #searchAutocomplete="matAutocomplete" mdDropdownItems class="search-autocomplete">
+          <mat-option *ngFor="let product of products$ | async" [value]="product.names[currentLang] || product.names['en']" 
+              (click)="showProduct(product)">
+            <mat-icon class="material-icons" aria-label="Open">shop</mat-icon>
+            <span *ngIf="product.names">{{ product.names[currentLang] || product.names['en'] }}</span>
+          </mat-option>
           <mat-optgroup *ngFor="let searchGroup of searchGroupOptions$ | async" [label]="searchGroup.group">
             <mat-option *ngFor="let option of searchGroup.options" [value]="option" 
                 (click)="onSearchChange(option)">
-              {{ option }}
+              <mat-icon aria-label="Filter">search</mat-icon>
+              <span>{{ option }}</span>
             </mat-option>
           </mat-optgroup>
         </mat-autocomplete>
 
-        <button type="button" *ngIf="searchForm.get('searchInput').value" matSuffix mat-icon-button aria-label="Clear"
-            (click)="searchForm.get('searchInput').setValue('')">
+        <button type="button" *ngIf="searchForm.get('searchInput').value" matSuffix mat-icon-button aria-label="Clear Search"
+            (click)="clearSearch()">
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
