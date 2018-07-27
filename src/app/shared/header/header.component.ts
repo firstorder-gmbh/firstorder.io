@@ -1,10 +1,11 @@
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
-import { CommonModule } from '@angular/common';
-import { Component, ElementRef, Input, NgModule, ViewChild } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, ElementRef, Inject, Input, NgModule, PLATFORM_ID, ViewChild } from '@angular/core';
 import { Direction } from '@angular/cdk/bidi';
-import { map, startWith } from 'rxjs/operators';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { makeStateKey, StateKey, TransferState } from '@angular/platform-browser';
+import { map, startWith } from 'rxjs/operators';
 import { MatAutocompleteModule, MatAutocompleteTrigger, MatButtonModule, MatFormFieldModule,
   MatIconModule, MatInputModule, MatToolbarModule } from '@angular/material';
 import { Router } from '@angular/router';
@@ -60,13 +61,26 @@ export class HeaderComponent {
     private headerService: HeaderService,
     private fb: FormBuilder,
     private router: Router,
-    private sidenavService: SidenavService
+    private sidenavService: SidenavService,
+    private transferState: TransferState,
+    @Inject(PLATFORM_ID) private platformId: string
   ) {
-    afs.collection<any>('autocompletes').doc('search-products').valueChanges()
-    .subscribe(data => {
-      this.searchProductsAutocomplete = data;
+    const key: StateKey<number> = makeStateKey<number>('transfer-state-search-products');
+
+    // First we are looking in transfer-state, if nothing found we read from firestore
+    this.searchProductsAutocomplete = this.transferState.get(key, null);
+    if (this.searchProductsAutocomplete) {
       this.translateSearchGroups();
-    });
+    } else {
+      afs.collection<any>('autocompletes').doc('search-products').valueChanges()
+      .subscribe(data => {
+        if (!isPlatformBrowser(this.platformId)) { // write transfer state if on the server
+          this.transferState.set(key, data);
+        }
+        this.searchProductsAutocomplete = data;
+        this.translateSearchGroups();
+      });
+    }
 
     translate.onLangChange.subscribe(() => {
       this.currentLang = translate.currentLang;
@@ -96,6 +110,7 @@ export class HeaderComponent {
 
   clearSearch(): void {
     this.searchForm.get('searchInput').setValue('');
+    this.productService.search$.next(null); // reset search list
     setTimeout(() => {
       this.searchInput.nativeElement.focus();
       this.autocompleteTrigger.openPanel();

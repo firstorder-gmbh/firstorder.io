@@ -4,6 +4,10 @@ import 'zone.js/dist/zone-node';
 // tslint:disable-next-line: no-implicit-dependencies
 import 'reflect-metadata';
 
+// Required for Firebase
+(global as any).WebSocket = require('ws');
+(global as any).XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+
 import { enableProdMode } from '@angular/core';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
