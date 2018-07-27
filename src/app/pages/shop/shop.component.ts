@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
-import { FooterService } from './../../shared/footer/footer.service';
+import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
+import { Product } from '../../shared/product/product';
+import { ProductService } from '../../shared/product/product.service';
 
 @Component({
   selector: 'app-shop',
@@ -13,21 +16,32 @@ import { HeaderService } from '../../shared/header/header.service';
 })
 export class ShopComponent {
 
-  isHandset$: Observable<boolean> = this.breakpointObserver
-    .observe(Breakpoints.Handset)
-    .pipe(
-      map(result => {
-        return result.matches;
-      })
-    );
+  currentLang: string;
+  selectedProduct: Product;
 
   constructor(
-      private breakpointObserver: BreakpointObserver,
-      private footerService: FooterService,
-      private headerService: HeaderService
+    protected productService: ProductService,
+    protected translate: TranslateService,
+    private footerService: FooterService,
+    private headerService: HeaderService,
+    private router: Router
   ) {
     this.footerService.footerClass.next(null);
     this.headerService.headerClass.next(null);
     this.headerService.headerTitle.next('SHOP.TITLE');
+
+    translate.onLangChange.subscribe(() => {
+      this.currentLang = translate.currentLang;
+    });
+  }
+
+  hideProduct(): void {
+    this.router.navigate(['/shop']);
+    this.selectedProduct = null;
+  }
+
+  showProduct(product: Product): void {
+    this.selectedProduct = product;
+    this.router.navigate(['/shop', product.id]);
   }
 }

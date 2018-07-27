@@ -5,6 +5,15 @@
   .back-button {
     display: none;
     height: 40px;
+    margin-right: 24px;
+    width: 40px;
+    [dir=rtl] & {
+      margin-left: 24px;
+      margin-right: 0;
+    }
+  }
+  .clear-button {
+    height: 40px;
     width: 40px;
   }
   .search-form {
@@ -19,10 +28,35 @@
     }
     .search-form {
       display: block;
+      height: 100%;
       width: 100%;
       .mat-form-field {
+        height: 100%;
         width: 100%;
       }
+    }
+  }
+  @media (max-width: 599px) {
+    .toggle-navbar, .back-button {
+      margin-left: -8px;
+      [dir=rtl] & {
+        margin-left: 0;
+        margin-right: -8px;
+      }
+    }
+    .search-button, .clear-button {
+      margin-right: -8px;
+      [dir=rtl] & {
+        margin-left: -8px;
+        margin-right: 0;
+      }
+    }
+  }
+  .header-title {
+    padding-left: 24px;
+    [dir=rtl] & {
+      padding-left: 0;
+      padding-right: 24px;
     }
   }
 }

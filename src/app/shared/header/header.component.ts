@@ -1,24 +1,18 @@
 import { AngularFirestore } from 'angularfire2/firestore';
-import { BehaviorSubject, combineLatest, Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, NgModule, ViewChild } from '@angular/core';
-import { firestore } from 'firebase';
+import { Component, ElementRef, Input, NgModule, ViewChild } from '@angular/core';
+import { map, startWith } from 'rxjs/operators';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatAutocompleteTrigger, MatButtonModule, MatFormFieldModule,
   MatIconModule, MatInputModule, MatToolbarModule } from '@angular/material';
-import { debounceTime, map, startWith, switchMap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from './header.service';
+import { Product } from '../product/product';
+import { ProductService } from '../product/product.service';
 import { SidenavService } from '../sidenav/sidenav.service';
-
-export interface Product {
-  _id: string;
-  categories: object;
-  descriptions: object;
-  names: object;
-  variants: object;
-}
 
 export interface SearchGroup {
   group: string;
@@ -42,14 +36,13 @@ export const _filter = (options: Array<string>, value: string): Array<string> =>
 export class HeaderComponent {
   @ViewChild(MatAutocompleteTrigger) autocompleteTrigger: MatAutocompleteTrigger;
   currentLang: string;
+  @Input() dir: string;
   headerClass: string;
   headerTitle: string;
   isOpenNavbar = this.sidenavService.isOpenNavbar.getValue();
 
   products: Array<Product>;
-  products$: Observable<Array<Product>>;
 
-  search$: BehaviorSubject<string | null>;
   searchForm: FormGroup = this.fb.group({
     searchInput: ''
   });
@@ -60,9 +53,11 @@ export class HeaderComponent {
 
   constructor(
     protected afs: AngularFirestore,
+    protected productService: ProductService,
     protected translate: TranslateService,
     private headerService: HeaderService,
     private fb: FormBuilder,
+    private router: Router,
     private sidenavService: SidenavService
   ) {
     afs.collection<any>('autocompletes').doc('search-products').valueChanges()
@@ -83,31 +78,6 @@ export class HeaderComponent {
         map(value => this._filterGroup(value))
       );
     }
-
-    this.search$ = new BehaviorSubject(null);
-
-    this.products$ = combineLatest(
-      this.search$
-    ).pipe(
-      debounceTime(300), // delay execution to reduce api calls
-      switchMap(([search]) => {
-        if (search) {
-          return afs.collection('products', ref => {
-            let query: firestore.CollectionReference | firestore.Query = ref;
-
-            if (search) { query = query.where(`tags.${search}`, '==', true); }
-
-            return query.limit(10);
-          }).valueChanges() as Observable<Array<Product>>;
-        } else {
-          return of([]);
-        }
-      })
-    );
-
-    this.products$.subscribe(products => {
-      this.products = products;
-    });
 
     this.headerService.headerClass.subscribe((headerClass: string) => {
       this.headerClass = headerClass;
@@ -138,7 +108,16 @@ export class HeaderComponent {
   }
 
   onSearchChange(search: string | null): void {
-    this.search$.next(search.toLocaleLowerCase());
+    this.productService.tag$.next(search ? search.toLocaleLowerCase() : null);
+  }
+
+  searchProducts(option: string): void {
+    this.onSearchChange(option);
+    this.router.navigate(['/shop']);
+  }
+
+  showProduct(product: Product): void {
+    this.router.navigate(['/shop', product.id]);
   }
 
   async toggleNavbar(): Promise<void> {

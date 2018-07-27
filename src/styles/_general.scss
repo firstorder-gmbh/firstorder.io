@@ -31,6 +31,8 @@ body {
       background-color: transparent !important;
       // Override the color from the template
       color: black !important;
+      // Position needs to be relative
+      position: relative !important;
 
       mat-sidenav-content {
         // Remove the content margin if sidenav is expanded when hidden for print
@@ -68,7 +70,7 @@ body {
     }
   }
   // Hide website controls when printing
-  .hide-print, .navbar, app-header, app-footer {
+  .hide-print, .navbar, .sidenav.details, app-header, app-footer {
     display: none !important;
   }
 }

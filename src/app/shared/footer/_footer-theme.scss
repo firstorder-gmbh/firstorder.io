@@ -5,6 +5,9 @@
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
 
+  app-footer {
+    z-index: 2;
+  }
   .footer {
     background: mat-color($primary);
     color: mat-color($primary, default-contrast);

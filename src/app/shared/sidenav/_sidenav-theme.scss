@@ -8,6 +8,10 @@
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
 
+  app-sidenav {
+    flex: 1;
+  }
+
   .mat-sidenav {
     @media screen and (min-width: 600px) {
       .mat-toolbar-row, .mat-toolbar-single-row {

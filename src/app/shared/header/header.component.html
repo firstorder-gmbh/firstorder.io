@@ -1,4 +1,4 @@
-<header class="header">
+<header class="header" [dir]="dir">
   <mat-toolbar class="header-toolbar" [ngClass]="headerClass" color="primary">
     <button type="button" mat-icon-button class="toggle-navbar" aria-label="Toggle navbar" (click)="toggleNavbar()">
       <mat-icon aria-label="Side nav toggle icon" class="rtl-mirror">{{ isOpenNavbar ? 'chevron_left' : 'menu' }}</mat-icon>
@@ -18,28 +18,28 @@
             [matAutocomplete]="searchAutocomplete" (input)="onSearchChange($event.target.value)" autofocus>
 
         <mat-autocomplete #searchAutocomplete="matAutocomplete" mdDropdownItems class="search-autocomplete">
-          <mat-option *ngFor="let product of products$ | async" [value]="product.names[currentLang] || product.names['en']" 
+          <mat-option *ngFor="let product of productService.products$ | async" [value]="product.names[currentLang] || product.names['en']" 
               (click)="showProduct(product)">
             <mat-icon class="material-icons" aria-label="Open">shop</mat-icon>
             <span *ngIf="product.names">{{ product.names[currentLang] || product.names['en'] }}</span>
           </mat-option>
           <mat-optgroup *ngFor="let searchGroup of searchGroupOptions$ | async" [label]="searchGroup.group">
             <mat-option *ngFor="let option of searchGroup.options" [value]="option" 
-                (click)="onSearchChange(option)">
+                (click)="searchProducts(option)">
               <mat-icon aria-label="Filter">search</mat-icon>
               <span>{{ option }}</span>
             </mat-option>
           </mat-optgroup>
         </mat-autocomplete>
 
-        <button type="button" *ngIf="searchForm.get('searchInput').value" matSuffix mat-icon-button aria-label="Clear Search"
-            (click)="clearSearch()">
+        <button *ngIf="searchForm.get('searchInput').value" 
+            type="button" class="clear-button" matSuffix mat-icon-button aria-label="Clear Search" (click)="clearSearch()">
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
     </form>
 
-    <button type="button" mat-icon-button (click)="toggleSearch()" class="search-button">
+    <button type="button" class="search-button" mat-icon-button (click)="toggleSearch()">
       <mat-icon aria-label="Search button">search</mat-icon>
     </button>
   </mat-toolbar>

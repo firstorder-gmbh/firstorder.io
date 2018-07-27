@@ -1,11 +1,11 @@
-<mat-sidenav-container class="sidenav-container" [dir]="dir">
+<mat-sidenav-container class="sidenav-container" [class.desktop]="isDesktop" [dir]="dir">
   <mat-sidenav
       #navbar
       class="sidenav navbar"
-      fixedInViewport="true"
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false"
+      [fixedInViewport]="!isDesktop"
+      [attr.role]="isDesktop ? 'navigation' : 'dialog'"
+      [mode]="isDesktop ? 'side' : 'over'"
+      [opened]="isDesktop"
       (openedChange)="navbarOpenedChange($event)">
     <mat-toolbar class="navbar-toolbar" color="primary">
       <mat-icon class="navbar-avatar" aria-label="Avatar" svgIcon="logo"></mat-icon>
@@ -22,11 +22,13 @@
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
+
   <mat-sidenav-content>
-    <app-header></app-header>
+    <app-header [dir]="dir"></app-header>
     <main class="main">
       <router-outlet></router-outlet>
     </main>
     <app-footer></app-footer>
   </mat-sidenav-content>
+
 </mat-sidenav-container>

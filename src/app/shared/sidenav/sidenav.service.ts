@@ -5,13 +5,28 @@ import { MatDrawerToggleResult, MatSidenav } from '@angular/material';
 @Injectable()
 export class SidenavService {
 
+  isOpenDetails: BehaviorSubject<boolean> = new BehaviorSubject(false);
   isOpenNavbar: BehaviorSubject<boolean> = new BehaviorSubject(false);
+
+  private details: MatSidenav;
   private navbar: MatSidenav;
+
+  closeDetails(): Promise<MatDrawerToggleResult> {
+    this.isOpenDetails.next(false);
+
+    return this.details.close();
+  }
 
   closeNavbar(): Promise<MatDrawerToggleResult> {
     this.isOpenNavbar.next(false);
 
     return this.navbar.close();
+  }
+
+  openDetails(): Promise<MatDrawerToggleResult> {
+    this.isOpenDetails.next(true);
+
+    return this.navbar.open();
   }
 
   openNavbar(): Promise<MatDrawerToggleResult> {
@@ -20,8 +35,16 @@ export class SidenavService {
     return this.navbar.open();
   }
 
+  setDetails(details: MatSidenav): void {
+    this.details = details;
+  }
+
   setNavbar(navbar: MatSidenav): void {
     this.navbar = navbar;
+  }
+
+  toggleDetails(): Promise<MatDrawerToggleResult> {
+    return this.details.toggle(!this.isOpenDetails.value);
   }
 
   toggleNavbar(): Promise<MatDrawerToggleResult> {

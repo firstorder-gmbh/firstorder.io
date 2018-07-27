@@ -18,9 +18,13 @@ import { SidenavService } from './sidenav.service';
 export class SidenavComponent implements OnDestroy, OnInit {
 
   dir: Direction;
-  isHandset$: Observable<boolean> = this.breakpointObserver
-    .observe(Breakpoints.Handset)
-    .pipe(map(result => result.matches));
+  isDesktop: boolean;
+  isDesktop$ = this.breakpointObserver
+    .observe([Breakpoints.Large, Breakpoints.XLarge])
+    .subscribe(result => {
+      this.isDesktop = result.matches;
+    });
+
   @ViewChild('navbar') navbar: MatSidenav;
   navList = [
     { class: 'home', icon: 'home', link: '/home', title: 'HOME' },
@@ -50,6 +54,10 @@ export class SidenavComponent implements OnDestroy, OnInit {
     if (this.breakpointObserver.isMatched(Breakpoints.Handset)) {
       await this.sidenavService.closeNavbar();
     }
+  }
+
+  detailsOpenedChange(isOpen: boolean): void {
+    this.sidenavService.isOpenDetails.next(isOpen);
   }
 
   navbarOpenedChange(isOpen: boolean): void {

@@ -5,6 +5,10 @@
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
 
+  app-header {
+    z-index: 2;
+  }
+
   .header-toolbar {
     background: mat-color($primary);
     transition: background 200ms ease-out;
@@ -17,54 +21,28 @@
       color: rgba(0, 0, 0, 0.87) !important;
       transition: background 200ms ease-in;
     }
-    .back-button {
-      margin-right: 24px;
-      [dir=rtl] & {
-        margin-left: 24px;
-        margin-right: 0;
-      }
-    }
-    .search-form {
+
+    // deep elements
+    .search-form .mat-form-field-wrapper {
       height: 100%;
-      .mat-form-field {
+      padding-bottom: 0;
+      .mat-form-field-flex {
+        align-items: center;
         height: 100%;
-        .mat-form-field-wrapper {
+      }
+      .mat-form-field-infix {
+        border-top: 0;
+        .mat-input-element {
           height: 100%;
-          padding-bottom: 0;
-          .mat-form-field-flex {
-            align-items: center;
-            height: 100%;
-          }
-          .mat-form-field-infix {
-            border-top: 0;
-            .mat-input-element {
-              height: 100%;
-            }
-          }
-          .mat-form-field-underline, .mat-form-field-subscript-wrapper {
-            display: none;
-          }
         }
       }
-    }
-    @media (max-width: 599px) {
-      .toggle-navbar {
-        margin-left: -8px;
-        [dir=rtl] & {
-          margin-left: 0;
-          margin-right: -8px;
-        }
-      }
-    }
-    .header-title {
-      padding-left: 24px;
-      [dir=rtl] & {
-        padding-left: 0;
-        padding-right: 24px;
+      .mat-form-field-underline, .mat-form-field-subscript-wrapper {
+        display: none;
       }
     }
   }
 
+  // deep elements
   .search-autocomplete {
     @media (min-width: 600px) {
       max-height: calc(100vh - 64px - 16px) !important;

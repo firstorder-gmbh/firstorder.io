@@ -70,6 +70,7 @@ import { environment } from '../environments/environment';
 import { HomeComponent } from './pages/home/home.component';
 import { ImprintComponent } from './pages/imprint/imprint.component';
 import { ShopComponent } from './pages/shop/shop.component';
+import { ShopService } from './pages/shop/shop.service';
 
 // Shared
 import { FooterModule } from './shared/footer/footer.component';
@@ -77,6 +78,7 @@ import { FooterService } from './shared/footer/footer.service';
 import { HeaderModule } from './shared/header/header.component';
 import { HeaderService } from './shared/header/header.service';
 import { LanguageService } from './shared/translate/language.service';
+import { ProductService } from './shared/product/product.service';
 import { SidenavComponent } from './shared/sidenav/sidenav.component';
 import { SidenavService } from './shared/sidenav/sidenav.service';
 import { StyleManager } from './shared/style-manager/style-manager';
@@ -170,8 +172,8 @@ export class MaterialModule { }
     FormsModule,
     HttpClientJsonpModule,
     HttpClientModule,
-    ReactiveFormsModule,
     MaterialModule,
+    ReactiveFormsModule,
     ThemePickerModule,
     TransferHttpCacheModule,
     TranslateModule.forRoot({
@@ -186,6 +188,8 @@ export class MaterialModule { }
     FooterService,
     HeaderService,
     LanguageService,
+    ProductService,
+    ShopService,
     SidenavService,
     StyleManager,
     ThemeStorage,

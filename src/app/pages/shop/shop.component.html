@@ -1,6 +1,39 @@
-<div class="container">
-  <section class="section-tablet" *ngIf="(isHandset$ | async) === false">
-  </section>
-  <section class="section-handset" *ngIf="isHandset$ | async">
+<div class="container mat-typography">
+  <section class="section-products">
+      <ng-container *ngFor="let product of productService.products$ | async; trackBy: productService.trackByProducts">
+
+        <mat-card *ngIf="product.variants[product.default.variant] as variant"
+           class="product-card" [class.expanded]="selectedProduct == product" >
+
+          <img mat-card-image (click)="showProduct(product)"
+              src="{{ variant['images'][product.default.image] }}" 
+              alt="{{ product.names[currentLang] || product.names['en'] }}">
+
+          <mat-card-title *ngIf="product.names[currentLang] || product.names['en'] as name">
+            {{ name }}
+          </mat-card-title>
+
+          <mat-card-subtitle>
+            {{ variant.currency }} {{ variant.price }}
+          </mat-card-subtitle>
+
+          <mat-card-content *ngIf="product.descriptions[currentLang] || product.descriptions['en'] as descriptions">
+            <p *ngFor="let desc of descriptions | keyvalue">
+              {{ desc.value }}
+            </p>
+          </mat-card-content>
+
+          <mat-card-actions>
+            <div class="rating-container">
+              <button type="button" mat-icon-button *ngFor="let stars of [1, 2, 3, 4, 5]">
+                <mat-icon aria-label="Rate">{{ product.rating - stars >= 0 ? 'star' : (stars - product.rating >= 1 ? 'star_border' : 'star_half') }}</mat-icon>
+              </button>
+            </div>
+            <button type="button" mat-icon-button><mat-icon aria-label="Shopping cart">add_shopping_cart</mat-icon></button>
+          </mat-card-actions>
+
+        </mat-card>
+
+      </ng-container>
   </section>
 </div>

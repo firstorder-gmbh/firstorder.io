@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { SidenavComponent } from './shared/sidenav/sidenav.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ImprintComponent } from './pages/imprint/imprint.component';
 import { ShopComponent } from './pages/shop/shop.component';
+import { SidenavComponent } from './shared/sidenav/sidenav.component';
 
 const routes: Routes = [
   {
@@ -13,8 +13,9 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
-      { path: 'imprint', component: ImprintComponent },
-      { path: 'shop', component: ShopComponent }
+      { path: 'shop',  component: ShopComponent },
+      { path: 'shop/:id',  component: ShopComponent },
+      { path: 'imprint', component: ImprintComponent }
     ]
   },
   { path: '**', redirectTo: '/home' }

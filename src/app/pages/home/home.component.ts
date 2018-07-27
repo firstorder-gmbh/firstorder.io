@@ -16,7 +16,7 @@ import { HeaderService } from '../../shared/header/header.service';
 export class HomeComponent {
 
   isHandset$: Observable<boolean> = this.breakpointObserver
-    .observe(Breakpoints.Handset)
+    .observe([Breakpoints.XSmall, Breakpoints.Small])
     .pipe(
       map(result => {
         this.footerService.footerClass.next(result.matches ? null : 'transparent');
