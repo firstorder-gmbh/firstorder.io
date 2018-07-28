@@ -2,8 +2,6 @@
 .DS_Store
 .vscode
 
-package-lock.json
-
 # Firebase #
 /functions/node_modules
 /functions/lib
