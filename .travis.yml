@@ -26,7 +26,7 @@ cache:
 
 install:
   - npm install
-  - cd $FUNCTIONS_DIR && npm install
+  - cd $FUNCTIONS_DIR && npm install && cd ..
 
 before_script:
    - npm install -g firebase-tools
