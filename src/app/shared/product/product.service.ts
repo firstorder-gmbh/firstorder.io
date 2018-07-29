@@ -1,21 +1,22 @@
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { BehaviorSubject, combineLatest, of } from 'rxjs';
+import { BehaviorSubject, combineLatest, of, Subject } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
-import { debounceTime, map, switchMap } from 'rxjs/operators';
+import { debounceTime, map, switchMap, takeUntil } from 'rxjs/operators';
 import { firestore } from 'firebase';
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Inject, Injectable, OnDestroy, PLATFORM_ID } from '@angular/core';
 import { makeStateKey, StateKey, TransferState } from '@angular/platform-browser';
 
 import { Product } from './product';
 
 @Injectable()
-export class ProductService {
+export class ProductService implements OnDestroy {
 
   product$: BehaviorSubject<Product>; // selected product
   productId$: BehaviorSubject<string | null>; // selected product id
   products$: BehaviorSubject<Array<Product>>; // products list
   search$: BehaviorSubject<string | null>; // current search tag
 
+  private ngUnsubscribe = new Subject();
   private productDoc: AngularFirestoreDocument<Product>;
 
   constructor(
@@ -61,6 +62,7 @@ export class ProductService {
               return query.limit(100);
             }).snapshotChanges()
             .pipe(
+              takeUntil(this.ngUnsubscribe),
               map(actions => actions.map(a => {
                 const id = a.payload.doc.id;
                 const data = a.payload.doc.data() as Product;
@@ -95,6 +97,7 @@ export class ProductService {
 
             return this.productDoc.snapshotChanges()
             .pipe(
+              takeUntil(this.ngUnsubscribe),
               map(a => {
                 const id = a.payload.id;
                 const data = a.payload.data();
@@ -116,6 +119,11 @@ export class ProductService {
       });
     }
 
+  }
+
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   // https://angular.io/guide/template-syntax#ngfor-with-trackby
