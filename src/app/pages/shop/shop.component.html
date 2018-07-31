@@ -38,12 +38,11 @@
             </mat-card-subtitle>
 
             <mat-card-content *ngIf="isOpen && (product.descriptions[currentLang] || product.descriptions['en']) as descriptions">
-              <p *ngFor="let desc of descriptions | keyvalue">
-                {{ desc.value }}
-              </p>
+              <p *ngFor="let desc of descriptions | keyvalue" [innerHTML]="desc.value"></p>
             </mat-card-content>
 
-            <button type="button" mat-raised-button color="primary" class="cart-button" *ngIf="isOpen">
+            <button type="button" mat-raised-button color="primary" class="cart-button"
+                *ngIf="isOpen && variant.available && variant.price">
               <mat-icon aria-label="Shopping cart">add_shopping_cart</mat-icon>
               {{ 'ADD_TO_CART' | translate }}
             </button>
