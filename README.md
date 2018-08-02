@@ -15,7 +15,7 @@ with cutting edge technology and best web design guidelines that support all dev
 * [Angular 6](https://github.com/angular/angular): Single-page application
 * [Universal](https://github.com/angular/universal): Prerender, Better performance, SEO friendly
 * [Material](https://github.com/angular/material2): Best design, angular components
-* [Theming](https://material.angular.io/guide/theming): 4 Themes
+* [Theming](https://material.angular.io/guide/theming): 6 Themes: Light-Grey, Dark-Grey, Light-Indigo, Dark-Pink, Light-Deeppurple, Dark-Purple
 * [Translate](https://github.com/ngx-translate/core): English, German and Arabic
 * [Bidi](https://material.angular.io/cdk/bidi/overview): Right-To-Left for Arabic
 * [RxJS](https://github.com/reactivex/rxjs): Reactive Extensions for JavaScript
