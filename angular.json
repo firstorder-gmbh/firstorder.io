@@ -28,32 +28,14 @@
               }
             ],
             "styles": [
-              {
-                "input": "src/main.scss"
-              },
-              {
-                "input": "src/highlightjs/material-light.scss"
-              },
-              {
-                "input": "src/assets/pink-bluegrey.css",
-                "lazy": true,
-                "bundleName": "pink-bluegrey"
-              },
-              {
-                "input": "src/assets/deeppurple-amber.css",
-                "lazy": true,
-                "bundleName": "deeppurple-amber"
-              },
-              {
-                "input": "src/assets/indigo-pink.css",
-                "lazy": true,
-                "bundleName": "indigo-pink"
-              },
-              {
-                "input": "src/assets/purple-green.css",
-                "lazy": true,
-                "bundleName": "purple-green"
-              }
+              { "input": "src/main.scss" },
+              { "input": "src/highlightjs/material-light.scss" },
+              { "input": "src/assets/dark-grey-amber.css", "lazy": true, "bundleName": "dark-grey-amber" },
+              { "input": "src/assets/dark-pink-bluegrey.css", "lazy": true, "bundleName": "dark-pink-bluegrey" },
+              { "input": "src/assets/dark-purple-green.css", "lazy": true, "bundleName": "dark-purple-green" },
+              { "input": "src/assets/light-deeppurple-amber.css", "lazy": true, "bundleName": "light-deeppurple-amber" },
+              { "input": "src/assets/light-grey-amber.css", "lazy": true, "bundleName": "light-grey-amber" },
+              { "input": "src/assets/light-indigo-pink.css", "lazy": true, "bundleName": "light-indigo-pink" }
             ],
             "scripts": []
           },
@@ -103,32 +85,14 @@
             "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              {
-                "input": "src/main.scss"
-              },
-              {
-                "input": "src/highlightjs/material-light.scss"
-              },
-              {
-                "input": "src/assets/pink-bluegrey.css",
-                "lazy": true,
-                "bundleName": "pink-bluegrey"
-              },
-              {
-                "input": "src/assets/deeppurple-amber.css",
-                "lazy": true,
-                "bundleName": "deeppurple-amber"
-              },
-              {
-                "input": "src/assets/indigo-pink.css",
-                "lazy": true,
-                "bundleName": "indigo-pink"
-              },
-              {
-                "input": "src/assets/purple-green.css",
-                "lazy": true,
-                "bundleName": "purple-green"
-              }
+              { "input": "src/main.scss" },
+              { "input": "src/highlightjs/material-light.scss" },
+              { "input": "src/assets/dark-grey-amber.css", "lazy": true, "bundleName": "dark-grey-amber" },
+              { "input": "src/assets/dark-pink-bluegrey.css", "lazy": true, "bundleName": "dark-pink-bluegrey" },
+              { "input": "src/assets/dark-purple-green.css", "lazy": true, "bundleName": "dark-purple-green" },
+              { "input": "src/assets/light-deeppurple-amber.css", "lazy": true, "bundleName": "light-deeppurple-amber" },
+              { "input": "src/assets/light-grey-amber.css", "lazy": true, "bundleName": "light-grey-amber" },
+              { "input": "src/assets/light-indigo-pink.css", "lazy": true, "bundleName": "light-indigo-pink" }
             ],
             "assets": [
               {

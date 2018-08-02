@@ -7,6 +7,7 @@
   $warn: map-get($theme, warn);
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
+  $is-dark-theme: map-get($theme, is-dark);
 
   app-sidenav {
     flex: 1;
@@ -22,9 +23,15 @@
     // md-list-icon padding on lists 
     // https://github.com/angular/material2/issues/5090
     .mat-nav-list .mat-list-item {
-      &.active-link {
-        background-color: mat-color($primary, 0.12);
-        color: mat-color($primary);
+      &.activated {
+        @if($is-dark-theme and mat-color($primary) == #212121) {
+          background-color: rgba(255, 255, 255, 0.12);
+          color: white;
+        }
+        @else {
+          background-color: mat-color($primary, 0.12);
+          color: mat-color($primary);
+        }
       }
       .mat-list-item-content {
         @media screen and (min-width: 600px) {

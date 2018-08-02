@@ -11,7 +11,12 @@
   $exportBackgroundOpacity: if($is-dark-theme, 0.06, 0.03);
 
   .markdown-a {
-    color: mat-color($primary);
+    @if(mat-color($primary) == #212121) {
+      color: mat-color($foreground, secondary-text);
+    }
+    @else {
+      color: mat-color($primary);
+    }
   }
 
   .markdown-pre {

@@ -28,31 +28,12 @@ export class ThemePickerComponent {
   currentTheme;
 
   themes = [
-    {
-      primary: '#673AB7',
-      accent: '#FFC107',
-      href: 'deeppurple-amber.css',
-      isDark: false
-    },
-    {
-      primary: '#3F51B5',
-      accent: '#E91E63',
-      href: 'indigo-pink.css',
-      isDark: false,
-      isDefault: true
-    },
-    {
-      primary: '#E91E63',
-      accent: '#607D8B',
-      href: 'pink-bluegrey.css',
-      isDark: true
-    },
-    {
-      primary: '#9C27B0',
-      accent: '#4CAF50',
-      href: 'purple-green.css',
-      isDark: true
-    }
+    { primary: '#212121', accent: '#FFC107', href: 'light-grey-amber.css', isDark: false, isDefault: true },
+    { primary: '#212121', accent: '#FFC107', href: 'dark-grey-amber.css', isDark: true },
+    { primary: '#3F51B5', accent: '#E91E63', href: 'light-indigo-pink.css', isDark: false },
+    { primary: '#E91E63', accent: '#607D8B', href: 'dark-pink-bluegrey.css', isDark: true },
+    { primary: '#673AB7', accent: '#FFC107', href: 'light-deeppurple-amber.css', isDark: false },
+    { primary: '#9C27B0', accent: '#4CAF50', href: 'dark-purple-green.css', isDark: true }
   ];
 
   constructor(
