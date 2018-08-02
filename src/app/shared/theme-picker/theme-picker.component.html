@@ -11,7 +11,8 @@
     <mat-grid-tile *ngFor="let theme of themes">
       <div mat-menu-item [style.background]="theme.isDark ? '#424242' : '#fafafa'" (click)="installTheme(theme)">
         <div class="theme-picker-swatch">
-          <mat-icon class="theme-chosen-icon" *ngIf="currentTheme === theme">check_circle</mat-icon>
+          <mat-icon class="theme-chosen-icon" *ngIf="currentTheme === theme" [style.color]="theme.accent">check_circle</mat-icon>
+          <mat-icon class="theme-icon" *ngIf="currentTheme !== theme" [style.color]="theme.accent">check_circle_outline</mat-icon>
           <div class="theme-picker-primary" [style.background]="theme.primary"></div>
         </div>
       </div>

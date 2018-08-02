@@ -26,12 +26,19 @@ $theme-picker-accent-stripe-size: 6px;
     position: relative;
     width: $theme-picker-swatch-size;
 
-    .theme-chosen-icon {
-      color: white;
+    .theme-chosen-icon, .theme-icon {
       left: 50%;
       position: absolute;
       top: 50%;
       transform: translate(-50%, -50%);
+    }
+    .theme-icon {
+      display: none;
+    }
+    &:hover {
+      .theme-icon {
+        display: block;
+      }
     }
 
     &::after {

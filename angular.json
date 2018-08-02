@@ -30,11 +30,11 @@
             "styles": [
               { "input": "src/main.scss" },
               { "input": "src/highlightjs/material-light.scss" },
-              { "input": "src/assets/dark-grey-amber.css", "lazy": true, "bundleName": "dark-grey-amber" },
+              { "input": "src/assets/dark-grey-red.css", "lazy": true, "bundleName": "dark-grey-red" },
               { "input": "src/assets/dark-pink-bluegrey.css", "lazy": true, "bundleName": "dark-pink-bluegrey" },
               { "input": "src/assets/dark-purple-green.css", "lazy": true, "bundleName": "dark-purple-green" },
               { "input": "src/assets/light-deeppurple-amber.css", "lazy": true, "bundleName": "light-deeppurple-amber" },
-              { "input": "src/assets/light-grey-amber.css", "lazy": true, "bundleName": "light-grey-amber" },
+              { "input": "src/assets/light-grey-red.css", "lazy": true, "bundleName": "light-grey-red" },
               { "input": "src/assets/light-indigo-pink.css", "lazy": true, "bundleName": "light-indigo-pink" }
             ],
             "scripts": []
@@ -87,11 +87,11 @@
             "styles": [
               { "input": "src/main.scss" },
               { "input": "src/highlightjs/material-light.scss" },
-              { "input": "src/assets/dark-grey-amber.css", "lazy": true, "bundleName": "dark-grey-amber" },
+              { "input": "src/assets/dark-grey-red.css", "lazy": true, "bundleName": "dark-grey-red" },
               { "input": "src/assets/dark-pink-bluegrey.css", "lazy": true, "bundleName": "dark-pink-bluegrey" },
               { "input": "src/assets/dark-purple-green.css", "lazy": true, "bundleName": "dark-purple-green" },
               { "input": "src/assets/light-deeppurple-amber.css", "lazy": true, "bundleName": "light-deeppurple-amber" },
-              { "input": "src/assets/light-grey-amber.css", "lazy": true, "bundleName": "light-grey-amber" },
+              { "input": "src/assets/light-grey-red.css", "lazy": true, "bundleName": "light-grey-red" },
               { "input": "src/assets/light-indigo-pink.css", "lazy": true, "bundleName": "light-indigo-pink" }
             ],
             "assets": [

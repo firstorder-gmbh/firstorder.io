@@ -17,7 +17,7 @@
       width: 344px; // 16:9 ratio
     }
     .mat-card-image {
-      object-fit: scale-down;
+      object-fit: contain;
     }
     .mat-card-subtitle {
       margin: 0;

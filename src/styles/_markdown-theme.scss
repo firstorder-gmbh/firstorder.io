@@ -12,7 +12,7 @@
 
   .markdown-a {
     @if(mat-color($primary) == #212121) {
-      color: mat-color($foreground, secondary-text);
+      color: mat-color($accent);
     }
     @else {
       color: mat-color($primary);

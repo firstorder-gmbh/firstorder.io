@@ -24,9 +24,9 @@
     // https://github.com/angular/material2/issues/5090
     .mat-nav-list .mat-list-item {
       &.activated {
-        @if($is-dark-theme and mat-color($primary) == #212121) {
-          background-color: rgba(255, 255, 255, 0.12);
-          color: white;
+        @if(mat-color($primary) == #212121) {
+          background-color: mat-color($accent, 0.12);
+          color: mat-color($accent);
         }
         @else {
           background-color: mat-color($primary, 0.12);

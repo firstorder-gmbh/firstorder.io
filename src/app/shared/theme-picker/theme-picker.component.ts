@@ -28,8 +28,8 @@ export class ThemePickerComponent {
   currentTheme;
 
   themes = [
-    { primary: '#212121', accent: '#FFC107', href: 'light-grey-amber.css', isDark: false, isDefault: true },
-    { primary: '#212121', accent: '#FFC107', href: 'dark-grey-amber.css', isDark: true },
+    { primary: '#212121', accent: '#d50000', href: 'light-grey-red.css', isDark: false, isDefault: true },
+    { primary: '#212121', accent: '#d50000', href: 'dark-grey-red.css', isDark: true },
     { primary: '#3F51B5', accent: '#E91E63', href: 'light-indigo-pink.css', isDark: false },
     { primary: '#E91E63', accent: '#607D8B', href: 'dark-pink-bluegrey.css', isDark: true },
     { primary: '#673AB7', accent: '#FFC107', href: 'light-deeppurple-amber.css', isDark: false },
@@ -53,6 +53,8 @@ export class ThemePickerComponent {
     const currentTheme = this._themeStorage.getStoredTheme();
     if (currentTheme) {
       this.installTheme(currentTheme);
+    } else {
+      this.currentTheme = this.themes.find(theme => theme.isDefault);
     }
   }
 
