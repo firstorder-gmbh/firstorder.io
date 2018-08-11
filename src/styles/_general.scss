@@ -45,7 +45,7 @@ body {
         }
 
         // Roboto not printing ok on Chrome, fallback on supported fonts
-        .mat-typography {
+        .mat-typography, .mat-card {
           font-family: 'Helvetica Neue', sans-serif !important;
           h1, h2, h3, h4, h5 {
             font-family: 'Helvetica Neue', sans-serif !important;
