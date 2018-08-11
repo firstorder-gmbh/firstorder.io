@@ -3,7 +3,7 @@
     <div class="footer-begin">
       <app-theme-picker></app-theme-picker>
 
-      <mat-menu #appMenu="matMenu">
+      <mat-menu #appMenu="matMenu" xPosition="after" yPosition="above" [overlapTrigger]="false">
         <button mat-menu-item *ngFor="let lang of availableLanguages"
             (click)="setLanguage(lang)">{{ lang | uppercase }}</button>
       </mat-menu>

@@ -64,7 +64,10 @@ export class ThemePickerComponent {
     if (theme.isDefault) {
       this.styleManager.removeStyle('theme');
     } else {
-      this.styleManager.setStyle('theme', `assets/${theme.href}`);
+      // use timout to fix https://github.com/angular/material.angular.io/issues/495
+      setTimeout(() => {
+        this.styleManager.setStyle('theme', `assets/${theme.href}`);
+      });
     }
 
     if (this.currentTheme) {
