@@ -4,10 +4,14 @@
   $warn: map-get($theme, warn);
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
+  $is-dark-theme: map-get($theme, is-dark);
 
   app-shop {
     .product-toolbar {
       background: transparent;
+      .mat-icon {
+        text-shadow: 0 0 2px if($is-dark-theme, black, white);
+      }
     }
     .ratings {
       box-shadow: none;

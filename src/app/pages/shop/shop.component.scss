@@ -107,13 +107,6 @@
           position: absolute;
           right: 0;
           top: 0;
-          .close-button {
-            margin-left: -8px;
-            [dir=rtl] & {
-              margin-left: 0;
-              margin-right: -8px;
-            }
-          }
         }
         .mat-card-title {
           margin-bottom: 0;
@@ -126,6 +119,13 @@
         }
         @media (max-width: 599px) {
           padding: 16px;
+          .close-button {
+            margin-left: -8px;
+            [dir=rtl] & {
+              margin-left: 0;
+              margin-right: -8px;
+            }
+          }
           .mat-card-image {
             height: calc(100vw / 16 * 9);  // 16:9 ratio
             margin: -16px -16px 16px -16px;
