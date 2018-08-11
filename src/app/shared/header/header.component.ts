@@ -1,35 +1,35 @@
 import { AngularFirestore } from 'angularfire2/firestore';
-import { Observable } from 'rxjs';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Component, ElementRef, Inject, Input, NgModule, PLATFORM_ID, ViewChild } from '@angular/core';
 import { Direction } from '@angular/cdk/bidi';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { makeStateKey, StateKey, TransferState } from '@angular/platform-browser';
-import { map, startWith } from 'rxjs/operators';
 import { MatAutocompleteModule, MatAutocompleteTrigger, MatButtonModule, MatFormFieldModule,
   MatIconModule, MatInputModule, MatToolbarModule } from '@angular/material';
 import { Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from './header.service';
-import { Product } from '../product/product';
+import { Product } from '../product/product.model';
 import { ProductService } from '../product/product.service';
 import { SidenavService } from '../sidenav/sidenav.service';
 
-export interface SearchGroup {
-  group: string;
-  key: string;
-  options: Array<string>;
+export interface Autocomplete {
+  [groupKey: string]: { // used for order
+    label: {
+      [lang: string]: string // language keys 'ar' | 'en' | 'de'
+    };
+    options: {
+      [optionKey: string]: { // used for order
+        label: {
+          [lang: string]: string // language keys 'ar' | 'en' | 'de'
+        };
+        value: string;
+      };
+    };
+    value: string;
+  };
 }
-
-export const _filter = (options: Array<string>, value: string): Array<string> => {
-  const filterValue = value.toLowerCase();
-  if (options) {
-    return options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
-  } else {
-    return [];
-  }
-};
 
 @Component({
   selector: 'app-header',
@@ -37,6 +37,8 @@ export const _filter = (options: Array<string>, value: string): Array<string> =>
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  autocomplete: Autocomplete;
+  autocompleteFiltered: Autocomplete;
   @ViewChild(MatAutocompleteTrigger) autocompleteTrigger: MatAutocompleteTrigger;
   currentLang: string;
   @Input() dir: Direction;
@@ -49,10 +51,7 @@ export class HeaderComponent {
   searchForm: FormGroup = this.fb.group({
     searchInput: ''
   });
-  searchGroupOptions$: Observable<Array<SearchGroup>>;
-  searchGroups: Array<SearchGroup> = [];
   @ViewChild('searchInput') searchInput: ElementRef;
-  searchProductsAutocomplete: any;
 
   constructor(
     public productService: ProductService,
@@ -68,32 +67,23 @@ export class HeaderComponent {
     const key: StateKey<number> = makeStateKey<number>('transfer-state-search-products');
 
     // First we are looking in transfer-state, if nothing found we read from firestore
-    this.searchProductsAutocomplete = this.transferState.get(key, null);
-    if (this.searchProductsAutocomplete) {
-      this.translateSearchGroups();
+    this.autocomplete = this.transferState.get(key, null);
+    if (this.autocomplete) {
+      this.filterAutocomplete();
     } else {
-      afs.collection<any>('autocompletes').doc('search-products').valueChanges()
-      .subscribe(data => {
+      afs.collection('autocompletes').doc('search-products').valueChanges()
+      .subscribe((autocomplete: Autocomplete) => {
         if (!isPlatformBrowser(this.platformId)) { // write transfer state if on the server
-          this.transferState.set(key, data);
+          this.transferState.set(key, autocomplete);
         }
-        this.searchProductsAutocomplete = data;
-        this.translateSearchGroups();
+        this.autocomplete = autocomplete;
+        this.filterAutocomplete();
       });
     }
 
     translate.onLangChange.subscribe(() => {
       this.currentLang = translate.currentLang;
-      this.translateSearchGroups();
     });
-
-    if (this.searchForm.get('searchInput') !== undefined) {
-      this.searchGroupOptions$ = this.searchForm.get('searchInput').valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this._filterGroup(value))
-      );
-    }
 
     this.headerService.headerClass.subscribe((headerClass: string) => {
       this.headerClass = headerClass;
@@ -111,6 +101,7 @@ export class HeaderComponent {
   clearSearch(): void {
     this.searchForm.get('searchInput').setValue('');
     this.productService.search$.next(null); // reset search list
+    this.filterAutocomplete();
     setTimeout(() => {
       this.searchInput.nativeElement.focus();
       this.autocompleteTrigger.openPanel();
@@ -124,17 +115,18 @@ export class HeaderComponent {
     }
   }
 
-  onSearchChange(search: string | null): void {
-    this.productService.search$.next(search ? search.toLocaleLowerCase() : null);
+  onSearchChange(input: string | null): void {
+    this.productService.search$.next(input ? input.toLocaleLowerCase() : null);
+    this.filterAutocomplete();
   }
 
-  searchProducts(option: string): void {
-    this.onSearchChange(option);
+  searchProducts(value: string): void {
+    this.onSearchChange(value);
     void this.router.navigate(['/shop']);
   }
 
   showProduct(product: Product): void {
-    void this.router.navigate(['/shop', product.id]);
+    void this.router.navigate(['/shop', product._id]);
   }
 
   async toggleNavbar(): Promise<void> {
@@ -157,31 +149,28 @@ export class HeaderComponent {
     }
   }
 
-  private _filterGroup(value: string): Array<SearchGroup> {
-    if (value) {
-      return this.searchGroups
-        .map(searchGroup => ({
-          key: searchGroup.key,
-          group: searchGroup.group,
-          options: _filter(searchGroup.options, value)
-        }))
-        .filter(searchGroup => searchGroup.options.length > 0);
-    }
+  private filterAutocomplete(): void {
+    const input = this.searchForm.get('searchInput').value.toLowerCase();
+    if (input) {
+      this.autocompleteFiltered = {};
+      Object.keys(this.autocomplete).map(groupKey => {
+        const group = this.autocomplete[groupKey];
+        const options = {};
+        Object.keys(group.options).map(optionKey => {
+          Object.keys(group.options[optionKey].label).map(lang => {
+            if (group.options[optionKey].label[lang].toLowerCase().indexOf(input) === 0) {
+              options[optionKey] = { label: group.options[optionKey].label, value: group.options[optionKey].value };
 
-    return this.searchGroups;
-  }
-
-  private translateSearchGroups(): void {
-    if (this.searchProductsAutocomplete) {
-      this.searchGroups = [];
-      // Add predefined options
-      Object.keys(this.searchProductsAutocomplete).map(index => {
-        const obj = this.searchProductsAutocomplete[index];
-        const group = obj.group[this.currentLang] || obj.group.en; // translate or default to english
-        const options = obj.options[this.currentLang] || obj.options.en;
-        this.searchGroups.push({ key: obj.key, group, options });
+              return;
+            }
+          });
+        });
+        if (Object.keys(options).length > 0) {
+          this.autocompleteFiltered[groupKey] = { label: group.label, value: group.value, options };
+        }
       });
-      this.searchForm.get('searchInput').updateValueAndValidity(); // trigger filtering
+    } else {
+      this.autocompleteFiltered = this.autocomplete;
     }
   }
 }

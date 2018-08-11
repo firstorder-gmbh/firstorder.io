@@ -4,10 +4,10 @@
     <ng-container *ngFor="let product of productService.products$ | async; trackBy: productService.trackByProducts">
 
       <!-- Declare isOpen variable if product is selected -->
-      <div class="card-container" [class.opened]="isOpen" *ngFor="let isOpen of [product.id == selectedProduct?.id]">
+      <div class="card-container" [class.opened]="isOpen" *ngFor="let isOpen of [product._id == selectedProduct?._id]">
 
         <!-- Read default variant and make a card only if it exists -->
-        <mat-card *ngIf="product.variants[product.default.variant] as variant"
+        <mat-card *ngIf="product.variants[product.defaults.variant] as variant"
             class="product-card"
             (click)="openProduct(product)">
 
@@ -19,7 +19,7 @@
           </mat-toolbar>
 
           <!-- SHOW ALWAYS -->
-          <img mat-card-image src="{{ variant['images'][product.default.image] }}" 
+          <img mat-card-image src="{{ variant['images'][product.defaults.image] }}" 
               alt="{{ product.names[currentLang] || product.names['en'] }}">
 
           <div class="card-details">

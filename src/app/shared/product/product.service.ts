@@ -6,7 +6,7 @@ import { firestore } from 'firebase';
 import { Inject, Injectable, OnDestroy, PLATFORM_ID } from '@angular/core';
 import { makeStateKey, StateKey, TransferState } from '@angular/platform-browser';
 
-import { Product } from './product';
+import { Product } from './product.model';
 
 @Injectable()
 export class ProductService implements OnDestroy {
@@ -64,10 +64,10 @@ export class ProductService implements OnDestroy {
             .pipe(
               takeUntil(this.ngUnsubscribe),
               map(actions => actions.map(a => {
-                const id = a.payload.doc.id;
+                const _id = a.payload.doc.id;
                 const data = a.payload.doc.data() as Product;
 
-                return { id, ...data };
+                return { _id, ...data };
               }))
             );
           // } else {
@@ -99,10 +99,10 @@ export class ProductService implements OnDestroy {
             .pipe(
               takeUntil(this.ngUnsubscribe),
               map(a => {
-                const id = a.payload.id;
+                const _id = a.payload.id;
                 const data = a.payload.data();
 
-                return { id, ...data };
+                return { _id, ...data };
               })
             );
           } else {
@@ -128,6 +128,6 @@ export class ProductService implements OnDestroy {
 
   // https://angular.io/guide/template-syntax#ngfor-with-trackby
   trackByProducts(index: number, product: Product): string {
-    return product.id;
+    return product._id;
   }
 }

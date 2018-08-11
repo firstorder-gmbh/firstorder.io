@@ -23,14 +23,18 @@
             <mat-icon class="material-icons" aria-label="Open">shop</mat-icon>
             <span *ngIf="product.names">{{ product.names[currentLang] || product.names['en'] }}</span>
           </mat-option>
-          <mat-optgroup *ngFor="let searchGroup of searchGroupOptions$ | async" [label]="searchGroup.group" [ngSwitch]="searchGroup.key">
-            <mat-option *ngFor="let option of searchGroup.options" [value]="option" 
-                (click)="searchProducts(option)">
-              <mat-icon aria-label="category" *ngSwitchCase="'category'">category</mat-icon>
-              <mat-icon aria-label="size" *ngSwitchCase="'size'">straighten</mat-icon>
-              <mat-icon aria-label="color" *ngSwitchCase="'color'" [style.color]="option">colorize</mat-icon>
+
+          <mat-optgroup *ngFor="let group of autocompleteFiltered | keyvalue" 
+              [label]="group.value.label[currentLang] || group.value.label['en']" 
+              [ngSwitch]="group.value.value">
+            <mat-option *ngFor="let option of group.value.options | keyvalue" 
+                [value]="option.value.label[currentLang] || option.value.label['en']" 
+                (click)="searchProducts(option.value.value)">
+              <mat-icon aria-label="category" *ngSwitchCase="'categories'">category</mat-icon>
+              <mat-icon aria-label="size" *ngSwitchCase="'sizes'">straighten</mat-icon>
+              <mat-icon aria-label="color" *ngSwitchCase="'colors'" [style.color]="option.value.value">colorize</mat-icon>
               <mat-icon aria-label="option" *ngSwitchDefault>search</mat-icon>
-              <span>{{ option }}</span>
+              <span>{{ option.value.label[currentLang] || option.value.label['en'] }}</span>
             </mat-option>
           </mat-optgroup>
         </mat-autocomplete>
