@@ -1,0 +1,15 @@
+{
+	"recommendations": [
+    "Mikael.angular-beastcode",
+    "natewallace.angular2-inline",
+    "steoates.autoimport",
+    "msjsdiag.debugger-for-chrome",
+    "dbaeumer.vscode-eslint",
+    "donjayamanne.githistory",
+    "eamodio.gitlens",
+    "secanis.jenkinsfile-support",
+    "Tyriar.sort-lines",
+    "shinnn.stylelint",
+    "eg2.tslint"
+	]
+}
