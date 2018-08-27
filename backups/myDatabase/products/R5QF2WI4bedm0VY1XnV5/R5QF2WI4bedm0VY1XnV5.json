@@ -1,0 +1,236 @@
+{
+  "updated": {
+    "value": "2018-07-30T22:00:00.000Z",
+    "type": "timestamp"
+  },
+  "names": {
+    "value": {
+      "en": {
+        "value": "Free Angular Seed Project",
+        "type": "string"
+      },
+      "de": {
+        "value": "Kostenloses Angular Projekt",
+        "type": "string"
+      },
+      "ar": {
+        "value": "Angular مشروع مجاني",
+        "type": "string"
+      }
+    },
+    "type": "object"
+  },
+  "variants": {
+    "value": {
+      "1": {
+        "value": {
+          "images": {
+            "value": {
+              "1": {
+                "value": "https://firebasestorage.googleapis.com/v0/b/firstorder-io.appspot.com/o/assets%2Flogos%2Fsafari-pinned-tab.svg?alt=media&token=40bf6278-e557-4e5b-ae5c-03aa8803616c",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "reserved": {
+            "value": 0,
+            "type": "number"
+          },
+          "currency": {
+            "value": "EUR",
+            "type": "string"
+          },
+          "price": {
+            "value": 0,
+            "type": "number"
+          },
+          "size": {
+            "value": "2.5 MB",
+            "type": "string"
+          },
+          "available": {
+            "value": 1,
+            "type": "number"
+          },
+          "color": {
+            "value": "Blue, Purple, Deeppurple, Pink",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "type": "object"
+  },
+  "tags": {
+    "value": {
+      "free": {
+        "value": true,
+        "type": "boolean"
+      },
+      "angular": {
+        "value": true,
+        "type": "boolean"
+      },
+      "github": {
+        "value": true,
+        "type": "boolean"
+      },
+      "project": {
+        "value": true,
+        "type": "boolean"
+      }
+    },
+    "type": "object"
+  },
+  "defaults": {
+    "value": {
+      "image": {
+        "value": "1",
+        "type": "string"
+      },
+      "variant": {
+        "value": "1",
+        "type": "string"
+      }
+    },
+    "type": "object"
+  },
+  "available": {
+    "value": true,
+    "type": "boolean"
+  },
+  "descriptions": {
+    "value": {
+      "en": {
+        "value": {
+          "1": {
+            "value": "Download your free GitHub Angular Project",
+            "type": "string"
+          },
+          "2": {
+            "value": "<a class=\"markdown-a\" href=\"https://github.com/firstorder-gmbh/firstorder.io\" target=\"_blank\">https://github.com/firstorder-gmbh/firstorder.io</a>",
+            "type": "string"
+          },
+          "3": {
+            "value": "Angular 6+, Universal SSR & Prerender",
+            "type": "string"
+          },
+          "4": {
+            "value": "Material Design Project",
+            "type": "string"
+          },
+          "5": {
+            "value": "Theming: Light-Grey, Dark-Grey, Light-Indigo, Dark-Pink, Light-Deeppurple, Dark-Purple",
+            "type": "string"
+          },
+          "6": {
+            "value": "Firebase + Firestore",
+            "type": "string"
+          },
+          "7": {
+            "value": "Languages: English, German, Arabic",
+            "type": "string"
+          },
+          "8": {
+            "value": "Bidirectional: Left-To-Right & Right-To-Left",
+            "type": "string"
+          },
+          "9": {
+            "value": "Pages: Home, Shop, Imprint",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "de": {
+        "value": {
+          "1": {
+            "value": "Laden Sie Ihr kostenloses GitHub Angular Project herunter",
+            "type": "string"
+          },
+          "2": {
+            "value": "<a class=\"markdown-a\" href=\"https://github.com/firstorder-gmbh/firstorder.io\" target=\"_blank\">https://github.com/firstorder-gmbh/firstorder.io</a>",
+            "type": "string"
+          },
+          "3": {
+            "value": "Angular 6+, Universal SSR & Prerender",
+            "type": "string"
+          },
+          "4": {
+            "value": "Material Design",
+            "type": "string"
+          },
+          "5": {
+            "value": "Vorlagen: Hellgrau, Dunkelgrau, Hell-Indigo, Dunkel-Rosa, Hell-Dunkel, Dunkel-Violett",
+            "type": "string"
+          },
+          "6": {
+            "value": "Firebase + Firestore",
+            "type": "string"
+          },
+          "7": {
+            "value": "Sprachen: Englisch, Deutsch, Arabisch",
+            "type": "string"
+          },
+          "8": {
+            "value": "Bidirektional: links-nach-rechts & rechts-nach-links",
+            "type": "string"
+          },
+          "9": {
+            "value": "Seiten: Startseite, Shop, Impressum",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ar": {
+        "value": {
+          "1": {
+            "value": "قم بتنزيل مشروع GitHub Angular المجاني",
+            "type": "string"
+          },
+          "2": {
+            "value": "<a class=\"markdown-a\" href=\"https://github.com/firstorder-gmbh/firstorder.io\" target=\"_blank\">https://github.com/firstorder-gmbh/firstorder.io</a>",
+            "type": "string"
+          },
+          "3": {
+            "value": "Angular 6+, Universal SSR & Prerender",
+            "type": "string"
+          },
+          "4": {
+            "value": "Material Design",
+            "type": "string"
+          },
+          "5": {
+            "value": "قوالب: رمادي فاتح ، رمادي غامق ، نيلي-فاتح ، داكن-وردي ، خفيف ، ديب بيربل ، أرجواني غامق",
+            "type": "string"
+          },
+          "6": {
+            "value": "Firebase + Firestore",
+            "type": "string"
+          },
+          "7": {
+            "value": "اللغات: الإنجليزية ، الألمانية ، العربية",
+            "type": "string"
+          },
+          "8": {
+            "value": "ثنائي الاتجاه: من اليسار إلى اليمين ومن اليمين إلى اليسار",
+            "type": "string"
+          },
+          "9": {
+            "value": "الصفحات: الصفحة الرئيسية ، متجر ، بصمة",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "type": "object"
+  },
+  "rating": {
+    "value": 5,
+    "type": "number"
+  }
+}

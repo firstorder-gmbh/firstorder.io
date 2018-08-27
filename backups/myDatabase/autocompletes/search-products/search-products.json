@@ -1,0 +1,47 @@
+{
+  "1": {
+    "value": {
+      "options": {
+        "value": {
+          "1": {
+            "value": {
+              "value": {
+                "value": "angular",
+                "type": "string"
+              },
+              "label": {
+                "value": {
+                  "en": {
+                    "value": "Angular 6",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "value": {
+        "value": "categories",
+        "type": "string"
+      },
+      "label": {
+        "value": {
+          "en": {
+            "value": "Categories",
+            "type": "string"
+          },
+          "de": {
+            "value": "Kategorien",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "type": "object"
+  }
+}
