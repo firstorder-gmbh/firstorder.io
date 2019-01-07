@@ -18,7 +18,7 @@ describe('HeaderComponent', () => {
     fixture.detectChanges();
   }));
 
-  it('should compile', () => {
-    expect(component).toBeTruthy();
+  it('should compile', async () => {
+    await expect(component).toBeTruthy();
   });
 });

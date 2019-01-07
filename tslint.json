@@ -152,7 +152,10 @@
     "no-eval": true,
     "no-floating-promises": true,
     "no-forward-ref": true,
-    "no-implicit-dependencies": true,
+    "no-implicit-dependencies": [
+      true,
+      "dev"
+    ],
     "no-import-side-effect": {"severity": "warning"},
     "no-inferrable-types": true,
     "no-input-rename": true,
@@ -191,7 +194,6 @@
       true,
       "allow-fast-null-checks"
     ],
-    "no-unused-variable": true,
     "no-use-before-declare": true,
     "no-void-expression": [true, "ignore-arrow-function-shorthand"],
     "no-var-keyword": true,

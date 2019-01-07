@@ -25,27 +25,27 @@ describe('ThemeStorage Service', () => {
   beforeEach(createTestData);
   afterEach(clearTestData);
 
-  it('should set the current theme', () => {
-    expect(getCurrTheme()).toEqual(testTheme);
+  it('should set the current theme', async () => {
+    await expect(getCurrTheme()).toEqual(testTheme);
     service.storeTheme(secondTestTheme);
-    expect(getCurrTheme()).toEqual(secondTestTheme);
+    await expect(getCurrTheme()).toEqual(secondTestTheme);
   });
 
-  it('should get the current theme', () => {
+  it('should get the current theme', async () => {
     const theme = service.getStoredTheme();
-    expect(theme).toEqual(testTheme);
+    await expect(theme).toEqual(testTheme);
   });
 
-  it('should clear the stored theme data', () => {
-    expect(getCurrTheme()).not.toBeNull();
+  it('should clear the stored theme data', async () => {
+    await expect(getCurrTheme()).not.toBeNull();
     service.clearStorage();
-    expect(getCurrTheme()).toBeNull();
+    await expect(getCurrTheme()).toBeNull();
   });
 
-  it('should emit an event when setTheme is called', () => {
+  it('should emit an event when setTheme is called', async () => {
     spyOn(service.onThemeUpdate, 'emit');
     service.storeTheme(secondTestTheme);
-    expect(service.onThemeUpdate.emit).toHaveBeenCalled();
-    expect(service.onThemeUpdate.emit).toHaveBeenCalledWith(secondTestTheme);
+    await expect(service.onThemeUpdate.emit).toHaveBeenCalled();
+    await expect(service.onThemeUpdate.emit).toHaveBeenCalledWith(secondTestTheme);
   });
 });

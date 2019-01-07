@@ -24,35 +24,35 @@ describe('StyleManager', () => {
     }
   });
 
-  it('should add stylesheet to head', () => {
+  it('should add stylesheet to head', async () => {
     styleManager.setStyle('test', 'test.css');
     // tslint:disable-next-line: no-unnecessary-type-assertion
     const styleEl = document.head.querySelector('.style-manager-test') as HTMLLinkElement;
-    expect(styleEl).not.toBeNull();
-    expect(styleEl.href.endsWith('test.css')).toBe(true);
+    await expect(styleEl).not.toBeNull();
+    await expect(styleEl.href.endsWith('test.css')).toBe(true);
   });
 
-  it('should change existing stylesheet', () => {
+  it('should change existing stylesheet', async () => {
     styleManager.setStyle('test', 'test.css');
     // tslint:disable-next-line: no-unnecessary-type-assertion
     const styleEl = document.head.querySelector('.style-manager-test') as HTMLLinkElement;
-    expect(styleEl).not.toBeNull();
-    expect(styleEl.href.endsWith('test.css')).toBe(true);
+    await expect(styleEl).not.toBeNull();
+    await expect(styleEl.href.endsWith('test.css')).toBe(true);
 
     styleManager.setStyle('test', 'new.css');
-    expect(styleEl.href.endsWith('new.css')).toBe(true);
+    await expect(styleEl.href.endsWith('new.css')).toBe(true);
   });
 
-  it('should remove existing stylesheet', () => {
+  it('should remove existing stylesheet', async () => {
     styleManager.setStyle('test', 'test.css');
     // tslint:disable-next-line: no-unnecessary-type-assertion
     let styleEl = document.head.querySelector('.style-manager-test') as HTMLLinkElement;
-    expect(styleEl).not.toBeNull();
-    expect(styleEl.href.endsWith('test.css')).toBe(true);
+    await expect(styleEl).not.toBeNull();
+    await expect(styleEl.href.endsWith('test.css')).toBe(true);
 
     styleManager.removeStyle('test');
     // tslint:disable-next-line: no-unnecessary-type-assertion
     styleEl = document.head.querySelector('.style-manager-test') as HTMLLinkElement;
-    expect(styleEl).toBeNull();
+    await expect(styleEl).toBeNull();
   });
 });

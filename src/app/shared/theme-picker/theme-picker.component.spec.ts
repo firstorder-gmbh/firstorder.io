@@ -9,7 +9,7 @@ describe('ThemePicker', () => {
     }).compileComponents();
   }));
 
-  it('should install theme based on href', () => {
+  it('should install theme based on href', async () => {
     const fixture = TestBed.createComponent(ThemePickerComponent);
     const component = fixture.componentInstance;
     const href = 'dark-pink-bluegrey.css';
@@ -19,7 +19,7 @@ describe('ThemePicker', () => {
       accent: '#607D8B',
       href
     });
-    expect(component.styleManager.setStyle).toHaveBeenCalled();
-    expect(component.styleManager.setStyle).toHaveBeenCalledWith('theme', `assets/${href}`);
+    await expect(component.styleManager.setStyle).toHaveBeenCalled();
+    await expect(component.styleManager.setStyle).toHaveBeenCalledWith('theme', `assets/${href}`);
   });
 });
