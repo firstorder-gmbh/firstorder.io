@@ -8,12 +8,12 @@
 
 <em>ORDER, ORDER, ORDER!</em>
 
-<strong>First Order's mission is to standardize all websites</strong>
+<strong>First Order's mission is to develop websites</strong>
 with cutting edge technology and best web design guidelines that support all devices and browsers.
 
 
 ## Packages & Features
-* [Angular 6](https://github.com/angular/angular): Single-page application
+* [Angular 7+](https://github.com/angular/angular): Single-page application
 * [Universal](https://github.com/angular/universal): Prerender, Better performance, SEO friendly
 * [Material](https://github.com/angular/material2): Best design, angular components
 * [Theming](https://material.angular.io/guide/theming): 6 Themes: Light-Grey, Dark-Grey, Light-Indigo, Dark-Pink, Light-Deeppurple, Dark-Purple
