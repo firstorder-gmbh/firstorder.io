@@ -51,11 +51,13 @@ export class ProductService implements OnDestroy {
                 // query all search words (or tags),
                 // only client sorting is feasible as we don't want to create a composite index for each tag
                 for (const tag of search.split(' ')) {
-                  query = query.where(`tags.${tag}`, '==', true);
+                  query = query.where('available', '==', true).where(`tags.${tag}`, '==', true);
                 }
               } else {
                 // search empty, so we can sort results after creating only one composite index
-                query = query.orderBy('rating', 'desc').orderBy('updated', 'desc');
+                query = query
+                  .where('available', '>=', true).orderBy('available', 'asc')
+                  .orderBy('rating', 'desc').orderBy('updated', 'desc');
               }
 
               // return only first 100 results
