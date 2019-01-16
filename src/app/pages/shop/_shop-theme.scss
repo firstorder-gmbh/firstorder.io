@@ -14,16 +14,20 @@
       }
     }
     .ratings {
+      border: none;
       box-shadow: none;
       margin: 4px 0;
-      .mat-button-toggle-label-content {
-        line-height: inherit;
-        padding: 0;
-        .mat-icon {
-          color: #fed430;
-          font-size: 16px;
-          height: 16px;
-          width: 16px;
+      .mat-button-toggle {
+        border-left: none !important;
+        .mat-button-toggle-label-content {
+          line-height: inherit;
+          padding: 0;
+          .mat-icon {
+            color: #fed430;
+            font-size: 16px;
+            height: 16px;
+            width: 16px;
+          }
         }
       }
     }
