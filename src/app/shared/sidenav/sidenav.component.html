@@ -14,7 +14,7 @@
     <mat-nav-list>
       <mat-list-item *ngFor="let item of navList"
           [ngClass]="item.class"
-          [routerLink]="item.link" 
+          [routerLink]="item.link"
           routerLinkActive="activated"
           (click)="closeNavbar()">
         <mat-icon matListIcon>{{ item.icon }}</mat-icon>

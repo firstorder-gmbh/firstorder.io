@@ -19,7 +19,7 @@
           </mat-toolbar>
 
           <!-- SHOW ALWAYS -->
-          <img mat-card-image src="{{ variant['images'][product.defaults.image] }}" 
+          <img mat-card-image src="{{ variant['images'][product.defaults.image] }}"
               alt="{{ product.names[currentLang] || product.names['en'] }}">
 
           <div class="card-details">
@@ -32,7 +32,7 @@
                 <mat-icon>{{ product.rating - stars >= 0 ? 'star' : (stars - product.rating >= 1 ? 'star_border' : 'star_half') }}</mat-icon>
               </mat-button-toggle>
             </mat-button-toggle-group>
-          
+
             <mat-card-subtitle>
               {{ variant.currency }} {{ variant.price }}
             </mat-card-subtitle>

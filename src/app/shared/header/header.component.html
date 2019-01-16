@@ -14,21 +14,21 @@
           <mat-icon class="rtl-mirror">arrow_back</mat-icon>
         </button>
 
-        <input type="text" matInput placeholder="{{ 'SEARCH.PLACEHOLDER' | translate }}" #searchInput formControlName="searchInput" 
+        <input type="text" matInput placeholder="{{ 'SEARCH.PLACEHOLDER' | translate }}" #searchInput formControlName="searchInput"
             [matAutocomplete]="searchAutocomplete" (input)="onSearchChange($event.target.value)" autofocus>
 
         <mat-autocomplete #searchAutocomplete="matAutocomplete" mdDropdownItems class="search-autocomplete">
-          <mat-option *ngFor="let product of productService.products$ | async | slice:0:3 " [value]="product.names[currentLang] || product.names['en']" 
+          <mat-option *ngFor="let product of productService.products$ | async | slice:0:3 " [value]="product.names[currentLang] || product.names['en']"
               (click)="showProduct(product)">
             <mat-icon class="material-icons" aria-label="Open">shop</mat-icon>
             <span *ngIf="product.names">{{ product.names[currentLang] || product.names['en'] }}</span>
           </mat-option>
 
-          <mat-optgroup *ngFor="let group of autocompleteFiltered | keyvalue" 
-              [label]="group.value.label[currentLang] || group.value.label['en']" 
+          <mat-optgroup *ngFor="let group of autocompleteFiltered | keyvalue"
+              [label]="group.value.label[currentLang] || group.value.label['en']"
               [ngSwitch]="group.value.value">
-            <mat-option *ngFor="let option of group.value.options | keyvalue" 
-                [value]="option.value.label[currentLang] || option.value.label['en']" 
+            <mat-option *ngFor="let option of group.value.options | keyvalue"
+                [value]="option.value.label[currentLang] || option.value.label['en']"
                 (click)="searchProducts(option.value.value)">
               <mat-icon aria-label="category" *ngSwitchCase="'categories'">category</mat-icon>
               <mat-icon aria-label="size" *ngSwitchCase="'sizes'">straighten</mat-icon>
@@ -39,7 +39,7 @@
           </mat-optgroup>
         </mat-autocomplete>
 
-        <button *ngIf="searchForm.get('searchInput').value" 
+        <button *ngIf="searchForm.get('searchInput').value"
             type="button" class="clear-button" matSuffix mat-icon-button aria-label="Clear Search" (click)="clearSearch()">
           <mat-icon>cancel</mat-icon>
         </button>
