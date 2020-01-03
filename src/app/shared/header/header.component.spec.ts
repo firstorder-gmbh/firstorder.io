@@ -9,7 +9,7 @@ describe('HeaderComponent', () => {
 
   beforeEach(fakeAsync(() => {
     void TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ]
+      declarations: [HeaderComponent]
     })
     .compileComponents();
 

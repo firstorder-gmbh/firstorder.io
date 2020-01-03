@@ -1,4 +1,4 @@
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Component, ElementRef, Inject, Input, NgModule, PLATFORM_ID, ViewChild } from '@angular/core';
 import { Direction } from '@angular/cdk/bidi';
@@ -10,19 +10,19 @@ import { Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { HeaderService } from './header.service';
-import { Product } from '../product/product.model';
-import { ProductService } from '../product/product.service';
-import { SidenavService } from '../sidenav/sidenav.service';
+import { Product } from './../product/product.model';
+import { ProductService } from './../product/product.service';
+import { SidenavService } from './../sidenav/sidenav.service';
 
 export interface Autocomplete {
   [groupKey: string]: { // used for order
     label: {
-      [lang: string]: string // language keys 'ar' | 'en' | 'de'
+      [lang: string]: string // language keys 'ar' | 'en' | 'de'
     };
     options: {
       [optionKey: string]: { // used for order
         label: {
-          [lang: string]: string // language keys 'ar' | 'en' | 'de'
+          [lang: string]: string // language keys 'ar' | 'en' | 'de'
         };
         value: string;
       };
@@ -39,7 +39,7 @@ export interface Autocomplete {
 export class HeaderComponent {
   autocomplete: Autocomplete;
   autocompleteFiltered: Autocomplete;
-  @ViewChild(MatAutocompleteTrigger) autocompleteTrigger: MatAutocompleteTrigger;
+  @ViewChild(MatAutocompleteTrigger, { static: false }) autocompleteTrigger: MatAutocompleteTrigger;
   currentLang: string;
   @Input() dir: Direction;
   headerClass: string;
@@ -51,7 +51,7 @@ export class HeaderComponent {
   searchForm: FormGroup = this.fb.group({
     searchInput: ''
   });
-  @ViewChild('searchInput') searchInput: ElementRef;
+  @ViewChild('searchInput', { static: false }) searchInput: ElementRef;
 
   constructor(
     public productService: ProductService,

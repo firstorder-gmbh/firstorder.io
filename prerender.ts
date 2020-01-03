@@ -3,22 +3,21 @@
 // These are important and needed before anything else
 import 'zone.js/dist/zone-node';
 import 'reflect-metadata';
+import { enableProdMode } from '@angular/core';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { join } from 'path';
+// Import module map for lazy loading
+import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
+import { renderModuleFactory } from '@angular/platform-server';
+
+import { ROUTES } from './static.paths';
 
 // Required for Firebase
 (global as any).WebSocket = require('ws');
 (global as any).XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
-import { enableProdMode } from '@angular/core';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
-import { join } from 'path';
-
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();
-
-// Import module map for lazy loading
-import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
-import { renderModuleFactory } from '@angular/platform-server';
-import { ROUTES } from './static.paths';
 
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/server/main');
 

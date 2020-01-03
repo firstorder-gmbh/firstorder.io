@@ -5,7 +5,7 @@ import { Direction } from '@angular/cdk/bidi';
 import { MatSidenav } from '@angular/material';
 import { Router, RoutesRecognized } from '@angular/router';
 
-import { LanguageService } from '../translate/language.service';
+import { LanguageService } from './../translate/language.service';
 import { SidenavService } from './sidenav.service';
 
 @Component({
@@ -24,7 +24,7 @@ export class SidenavComponent implements OnDestroy, OnInit {
       this.isDesktop = result.matches;
     });
 
-  @ViewChild('navbar') navbar: MatSidenav;
+  @ViewChild('navbar', { static: true }) navbar: MatSidenav;
   navList = [
     { class: 'home', icon: 'home', link: '/home', title: 'HOME' },
     { class: 'shop', icon: 'shop', link: '/shop', title: 'SHOP.TITLE' },

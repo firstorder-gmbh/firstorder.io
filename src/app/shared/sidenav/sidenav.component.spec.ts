@@ -9,7 +9,7 @@ describe('SidenavComponent', () => {
 
   beforeEach(fakeAsync(() => {
     void TestBed.configureTestingModule({
-      declarations: [ SidenavComponent ]
+      declarations: [SidenavComponent]
     })
     .compileComponents();
 

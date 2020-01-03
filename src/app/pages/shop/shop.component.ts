@@ -71,6 +71,7 @@ export class ShopComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.sidenavService.contentClass.next(null);
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
   }

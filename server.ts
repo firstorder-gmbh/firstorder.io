@@ -2,19 +2,16 @@
 
 import 'zone.js/dist/zone-node';
 import 'reflect-metadata';
-
-// Required for Firebase
-(global as any).WebSocket = require('ws');
-(global as any).XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
-
-import { enableProdMode } from '@angular/core';
-
 import * as express from 'express';
+import { enableProdMode } from '@angular/core';
+import { join } from 'path';
 import { ngExpressEngine } from '@nguniversal/express-engine';
 // Import module map for lazy loading
 import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 
-import { join } from 'path';
+// Required for Firebase
+(global as any).WebSocket = require('ws');
+(global as any).XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();

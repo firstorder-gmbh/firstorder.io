@@ -1,4 +1,4 @@
-import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { BehaviorSubject, combineLatest, of, Subject } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
 import { debounceTime, map, switchMap, takeUntil } from 'rxjs/operators';

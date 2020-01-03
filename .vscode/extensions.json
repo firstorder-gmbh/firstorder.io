@@ -1,15 +1,13 @@
 {
 	"recommendations": [
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
+    "hex-ci.stylelint-plus",
     "Mikael.angular-beastcode",
+    "ms-vscode.vscode-typescript-tslint-plugin",
+    "msjsdiag.debugger-for-chrome",
     "natewallace.angular2-inline",
     "steoates.autoimport",
-    "msjsdiag.debugger-for-chrome",
-    "dbaeumer.vscode-eslint",
-    "donjayamanne.githistory",
-    "eamodio.gitlens",
-    "secanis.jenkinsfile-support",
-    "Tyriar.sort-lines",
-    "shinnn.stylelint",
-    "eg2.tslint"
+    "Tyriar.sort-lines"
 	]
 }

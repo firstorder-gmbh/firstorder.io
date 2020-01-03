@@ -11,18 +11,18 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { AppTheme, ThemeStorage } from './theme-storage/theme-storage';
-import { environment } from '../../../environments/environment';
-import { StyleManager } from '../style-manager/style-manager';
+import { environment } from './../../../environments/environment';
+import { StyleManager } from './../style-manager/style-manager';
 
 @Component({
   selector: 'app-theme-picker',
   templateUrl: 'theme-picker.component.html',
   styleUrls: ['theme-picker.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  // tslint:disable-next-line: use-view-encapsulation
+  // tslint:disable-next-line: use-component-view-encapsulation
   encapsulation: ViewEncapsulation.None,
-  // tslint:disable-next-line: use-host-property-decorator
-  host: {'aria-hidden': 'true'}
+  // tslint:disable-next-line: no-host-metadata-property
+  host: { 'aria-hidden': 'true' }
 })
 export class ThemePickerComponent {
   currentTheme;

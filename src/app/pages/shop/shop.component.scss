@@ -129,7 +129,7 @@
           }
           .mat-card-image {
             height: calc(100vw / 16 * 9);  // 16:9 ratio
-            margin: -56px -16px 16px -16px;
+            margin: -56px -16px 16px;
             min-height: calc(100vw / 16 * 9);  // 16:9 ratio
           }
           .cart-button {
@@ -141,7 +141,7 @@
           padding-top: 64px;
           .mat-card-image {
             height: 337px; // 16:9 ratio
-            margin: -64px -24px 24px -24px;
+            margin: -64px -24px 24px;
             min-height: 337px; // 16:9 ratio
             width: 600px;
           }

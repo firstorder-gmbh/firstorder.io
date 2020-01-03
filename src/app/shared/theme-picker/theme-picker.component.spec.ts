@@ -1,6 +1,7 @@
 import { async, TestBed } from '@angular/core/testing';
+
+import { AppTestingModule } from './../../testing/testing.module';
 import { ThemePickerComponent, ThemePickerModule } from './theme-picker.component';
-import { AppTestingModule } from '../../testing/testing.module';
 
 describe('ThemePicker', () => {
   beforeEach(async(() => {

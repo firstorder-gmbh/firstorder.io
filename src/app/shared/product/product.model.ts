@@ -21,11 +21,11 @@ export interface Product {
   available: boolean; // if product is available or not
   defaults: Defaults; // see IDefault interface
   descriptions: {
-    [key: string]: { // language keys 'ar' | 'en' | 'de'
+    [key: string]: { // language keys 'ar' | 'en' | 'de'
       [key: string]: string // multiple descriptions per language, sorted by key: 01 | 02 | 03 ... 99,
     };
   };
-  names: { // language keys 'ar' | 'en' | 'de'
+  names: { // language keys 'ar' | 'en' | 'de'
     [key: string]: string // one name per language
   };
   rating: number;

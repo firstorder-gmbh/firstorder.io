@@ -11,8 +11,8 @@
 <strong>First Order's mission is to develop websites</strong>
 with cutting edge technology and best web design guidelines that support all devices and browsers.
 
-
 ## Packages & Features
+
 * [Angular 7+](https://github.com/angular/angular): Single-page application
 * [Universal](https://github.com/angular/universal): Prerender, Better performance, SEO friendly
 * [Material](https://github.com/angular/material2): Best design, angular components
@@ -26,11 +26,10 @@ with cutting edge technology and best web design guidelines that support all dev
 * [Travis CI](https://github.com/travis-ci/travis-ci): Continuous Integration with Travis
 * [Firebase](https://firebase.google.com): Deploy website on Firebase
 
-
 ## Getting Started
 
-
 ### Firebase
+
 This website uses [Google Firebase](https://firebase.google.com) as back-end.
 
 * You will need to create a Google account if you don't have one
@@ -41,8 +40,8 @@ This website uses [Google Firebase](https://firebase.google.com) as back-end.
 * Edit .firebaserc file in this repo and put yourwebsite-com, you will use it with the firebase terminal commands
 * Search the entire repo for 'firstorder', check carefully every occurrence and replace it with 'yourwebsite', particularly in angular.json and package.json
 
-
 ### Database
+
 This website uses [Cloud Firestore](https://firebase.google.com/docs/firestore) as a database, it's a NoSQL cloud database to store and sync data for client- and server-side.
 
 * In your [Firebase Console](https://console.firebase.google.com) goto Develop -> Database and select Cloud Firestore
@@ -62,31 +61,34 @@ This website uses [Cloud Firestore](https://firebase.google.com/docs/firestore) 
 **Note**: All titles and descriptions MUST be defined in English in the database under the 'en' parameter, and optionally in other languages 'de', 'ar'.
 This to ensure proper fallback to 'en' in case a translation is not found.
 
-
 ### Storage
+
 Firebase Storage can keep all the files that are not static assets to the project. 
 These can be product files, profile pictures or uploaded files.
 
 We recommend storing file metadata in the Database using the same path and :fileid like is Storage:
-```
+
+```bash
 Database/files/:fileid/metadata
 Storage/files/:fileid/filename.ext
 ```
 
-
 ### Installation & Build
+
 * To view/debug/test the website we use [Google Chrome](https://www.google.com/chrome).
-* Install [Visual Studio Code](https://code.visualstudio.com). 
+* Install [Visual Studio Code](https://code.visualstudio.com).
 Also install the recommended extensions when prompted.
 * Install [Node.js & npm](https://nodejs.org/en/download)
 * Open the project in Visual Studio Code, goto -> View -> Terminal and run:
-```
+
+```bash
 npm install or yarn
-npm install -g firebase-tools
+sudo npm install -g firebase-tools
 cd functions && npm install && cd ..
 ```
 
 For Development (Client-side only rendering)
+
 * run **`npm run start`** which will start `ng serve`. You can now test your website locally with Chrome on **`http://localhost:4200`**
 
 For Production (also for testing SSR/Pre-rendering locally)
@@ -97,13 +99,15 @@ For Production (also for testing SSR/Pre-rendering locally)
 
 **Note**: To deploy your static site to a static hosting platform you will have to deploy the `dist/browser` folder, rather than the usual `dist`
 
-
 ### Hosting
+
 Firebase Hosting can be used to host your static `dist/browser` website files. It takes care of your https security certificates for free, caches your files and much more.
 
 * First connect your domain to the hosting in the Firebase console -> Development -> Hosting.
+
 You should have 3 domains like this:
-```
+
+```bash
 yourwebsite-com.firebaseapp.com => Default (already created)
 yourwebsite.com => Serve traffic from this domain
 www.yourwebsite.com => Redirect this domain to another -> yourdomain.com
@@ -112,14 +116,14 @@ www.yourwebsite.com => Redirect this domain to another -> yourdomain.com
 * Here is how you can [deploy your website](https://firebase.google.com/docs/hosting/deploying)
 
 * In this repo the firebase.json file is already initialized to deploy your static pre-rendered files from the `dist/browser` folder to Firebase Hosting, so just run:
-```
+
+```bash
 firebase login
 firebase deploy
 ```
 
-
-All done. Navigate to https://yourwebsite.com to see it live.
-
+All done. Navigate to [https://yourwebsite.com](https://yourwebsite.com) to see it live.
 
 # License
+
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](/LICENSE)

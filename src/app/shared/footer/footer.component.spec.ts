@@ -9,7 +9,7 @@ describe('FooterComponent', () => {
 
   beforeEach(fakeAsync(() => {
     void TestBed.configureTestingModule({
-      declarations: [ FooterComponent ]
+      declarations: [FooterComponent]
     })
     .compileComponents();
 

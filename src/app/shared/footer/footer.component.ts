@@ -5,8 +5,8 @@ import { MatButtonModule, MatIconModule, MatMenuModule } from '@angular/material
 import { TranslateModule } from '@ngx-translate/core';
 
 import { FooterService } from './footer.service';
-import { LanguageService } from '../translate/language.service';
-import { ThemePickerModule } from '../theme-picker/theme-picker.component';
+import { LanguageService } from './../translate/language.service';
+import { ThemePickerModule } from './../theme-picker/theme-picker.component';
 
 @Component({
   selector: 'app-footer',
