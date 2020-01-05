@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { FooterService } from '../../shared/footer/footer.service';
 import { HeaderService } from '../../shared/header/header.service';
-import { LanguageService } from '../../shared/translate/language.service';
+import { LanguageService } from '../../shared/i18n/language.service';
 import { Product } from '../../shared/product/product.model';
 import { ProductService } from '../../shared/product/product.service';
 import { SidenavService } from '../../shared/sidenav/sidenav.service';

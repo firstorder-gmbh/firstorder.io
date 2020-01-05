@@ -5,7 +5,7 @@ import { Direction } from '@angular/cdk/bidi';
 import { MatSidenav } from '@angular/material';
 import { Router, RoutesRecognized } from '@angular/router';
 
-import { LanguageService } from './../translate/language.service';
+import { LanguageService } from './../i18n/language.service';
 import { SidenavService } from './sidenav.service';
 
 @Component({

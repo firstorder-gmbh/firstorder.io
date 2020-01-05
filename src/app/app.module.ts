@@ -78,14 +78,14 @@ import { FooterModule } from './shared/footer/footer.component';
 import { FooterService } from './shared/footer/footer.service';
 import { HeaderModule } from './shared/header/header.component';
 import { HeaderService } from './shared/header/header.service';
-import { LanguageService } from './shared/translate/language.service';
+import { LanguageService } from './shared/i18n/language.service';
 import { ProductService } from './shared/product/product.service';
 import { SidenavComponent } from './shared/sidenav/sidenav.component';
 import { SidenavService } from './shared/sidenav/sidenav.service';
 import { StyleManager } from './shared/style-manager/style-manager';
 import { ThemePickerModule } from './shared/theme-picker/theme-picker.component';
 import { ThemeStorage } from './shared/theme-picker/theme-storage/theme-storage';
-import { TranslateBrowserLoader } from './shared/translate/translate-browser-loader.service';
+import { TranslateBrowserLoader } from './shared/i18n/translate-browser-loader.service';
 
 // AoT requires an exported function for factories
 export function exportTranslateStaticLoader(http: HttpClient, transferState: TransferState): TranslateBrowserLoader {

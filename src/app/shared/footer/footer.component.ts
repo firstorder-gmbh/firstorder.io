@@ -5,7 +5,7 @@ import { MatButtonModule, MatIconModule, MatMenuModule } from '@angular/material
 import { TranslateModule } from '@ngx-translate/core';
 
 import { FooterService } from './footer.service';
-import { LanguageService } from './../translate/language.service';
+import { LanguageService } from './../i18n/language.service';
 import { ThemePickerModule } from './../theme-picker/theme-picker.component';
 
 @Component({
