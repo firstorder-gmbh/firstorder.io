@@ -20,7 +20,7 @@ export class ProductService implements OnDestroy {
   private productDoc: AngularFirestoreDocument<Product>;
 
   constructor(
-    protected afs: AngularFirestore,
+    protected angularFirestore: AngularFirestore,
     private transferState: TransferState,
     @Inject(PLATFORM_ID) private platformId: string
   ) {
@@ -45,7 +45,7 @@ export class ProductService implements OnDestroy {
         debounceTime(300), // delay execution to reduce api calls
         switchMap(([search]) => {
           // if (tag) {
-            return this.afs.collection('products', ref => {
+            return this.angularFirestore.collection('products', ref => {
               let query: firestore.CollectionReference | firestore.Query = ref;
               if (search) {
                 // query all search words (or tags),
@@ -95,7 +95,7 @@ export class ProductService implements OnDestroy {
         debounceTime(300), // delay execution to reduce api calls
         switchMap(([productId]) => {
           if (productId) {
-            this.productDoc = this.afs.doc<Product>(`products/${productId}`);
+            this.productDoc = this.angularFirestore.doc<Product>(`products/${productId}`);
 
             return this.productDoc.snapshotChanges()
             .pipe(

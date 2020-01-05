@@ -55,7 +55,7 @@ export class HeaderComponent {
 
   constructor(
     public productService: ProductService,
-    protected afs: AngularFirestore,
+    protected angularFirestore: AngularFirestore,
     protected translate: TranslateService,
     private headerService: HeaderService,
     private fb: FormBuilder,
@@ -71,7 +71,7 @@ export class HeaderComponent {
     if (this.autocomplete) {
       this.filterAutocomplete();
     } else {
-      afs.collection('autocompletes').doc('search-products').valueChanges()
+      angularFirestore.collection('autocompletes').doc('search-products').valueChanges()
       .subscribe((autocomplete: Autocomplete) => {
         if (!isPlatformBrowser(this.platformId)) { // write transfer state if on the server
           this.transferState.set(key, autocomplete);
