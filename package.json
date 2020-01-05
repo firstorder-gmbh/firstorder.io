@@ -7,6 +7,7 @@
     "url": "https://github.com/firstorder-gmbh/universal-starter.git"
   },
   "contributors": [
+    "Nicoleta Stancu <nico@togaimperial.com>",
     "Philip Sultanescu <philip@firstorder.io>"
   ],
   "engines": {
@@ -24,7 +25,7 @@
     "pree2e": "webdriver-manager update --standalone false --gecko false",
     "e2e": "ng e2e --no-webdriver-update",
     "build-themes": "bash ./scripts/build-themes.sh",
-    "build:client-and-server-bundles": "npm run build-themes && ng build --prod && ng run firstorder:server:production",
+    "build:client-and-server-bundles": "npm run build-themes && ng build -c prod && ng run firstorder:server:prod",
     "build:prerender": "npm run build:client-and-server-bundles && npm run webpack:server && npm run generate:prerender",
     "build:ssr": "npm run build:client-and-server-bundles && npm run webpack:server",
     "generate:prerender": "cd dist && node prerender",
