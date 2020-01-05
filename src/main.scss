@@ -9,6 +9,6 @@
 $primary: mat-palette($mat-grey, 900);
 $accent:  mat-palette($mat-red, A700);
 
-$theme: mat-light-theme($primary, $accent);
+$theme: mat-dark-theme($primary, $accent);
 @include angular-material-theme($theme);
 @include material-app-theme($theme);
