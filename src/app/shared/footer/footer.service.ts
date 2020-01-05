@@ -3,5 +3,5 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class FooterService {
-  footerClass: BehaviorSubject<string> = new BehaviorSubject(null);
+  footerClass$: BehaviorSubject<string> = new BehaviorSubject(null);
 }

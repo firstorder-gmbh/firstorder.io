@@ -25,13 +25,13 @@ export class FooterComponent {
       private footerService: FooterService,
       private languageService: LanguageService
   ) {
-    this.footerService.footerClass.subscribe((footerClass: string) => {
+    this.footerService.footerClass$.subscribe((footerClass: string) => {
       this.footerClass = footerClass;
     });
 
     this.language = this.languageService.getLanguage();
-    this.languageService.dir.next(this.language === 'ar' ? 'rtl' : 'ltr');
-    this.languageService.dir.subscribe(dir => {
+    this.languageService.dir$.next(this.language === 'ar' ? 'rtl' : 'ltr');
+    this.languageService.dir$.subscribe(dir => {
       this.dir = dir;
     });
   }
@@ -39,7 +39,7 @@ export class FooterComponent {
   setLanguage(locale: string): void {
     this.languageService.setLanguage(locale);
     this.currentLanguage = locale;
-    this.languageService.dir.next(locale === 'ar' ? 'rtl' : 'ltr');
+    this.languageService.dir$.next(locale === 'ar' ? 'rtl' : 'ltr');
   }
 }
 

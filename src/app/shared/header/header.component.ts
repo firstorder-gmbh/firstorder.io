@@ -85,11 +85,11 @@ export class HeaderComponent {
       this.currentLang = translate.currentLang;
     });
 
-    this.headerService.headerClass.subscribe((headerClass: string) => {
+    this.headerService.headerClass$.subscribe((headerClass: string) => {
       this.headerClass = headerClass;
     });
 
-    this.headerService.headerTitle.subscribe((headerTitle: string) => {
+    this.headerService.headerTitle$.subscribe((headerTitle: string) => {
       this.headerTitle = headerTitle;
     });
 

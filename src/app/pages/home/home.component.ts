@@ -19,8 +19,8 @@ export class HomeComponent {
     .observe([Breakpoints.XSmall, Breakpoints.Small])
     .pipe(
       map(result => {
-        this.footerService.footerClass.next(result.matches ? null : 'transparent');
-        this.headerService.headerClass.next(result.matches ? null : 'transparent');
+        this.footerService.footerClass$.next(result.matches ? null : 'transparent');
+        this.headerService.headerClass$.next(result.matches ? null : 'transparent');
 
         return result.matches;
       })
@@ -43,6 +43,6 @@ export class HomeComponent {
     this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube-nocookie.com/embed/${VIDEO_ID}`
       + `?autoplay=1&controls=0&disablekb=1&loop=1&modestbranding=1&mute=1&playlist=${VIDEO_ID}&rel=0&showinfo=0`);
 
-    this.headerService.headerTitle.next('HOME');
+    this.headerService.headerTitle$.next('HOME');
   }
 }

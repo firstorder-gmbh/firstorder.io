@@ -9,8 +9,7 @@ export class LanguageService {
   static storageKey = 'language-current';
   availableLanguages: Array<string> = ['ar', 'de', 'en'];
   defaultLanguage = 'en';
-
-  dir: BehaviorSubject<Direction>;
+  dir$: BehaviorSubject<Direction>;
 
   // check if running im browser
   private storage = isPlatformBrowser(this.platformId) ? localStorage : undefined;
@@ -39,7 +38,7 @@ export class LanguageService {
       translate.use(storedLanguage);
     }
 
-    this.dir = new BehaviorSubject(this.directionality.value);
+    this.dir$ = new BehaviorSubject(this.directionality.value);
   }
 
   clearStorage(): void {

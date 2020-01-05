@@ -38,7 +38,7 @@ export class SidenavComponent implements OnDestroy, OnInit {
       private router: Router,
       private sidenavService: SidenavService
   ) {
-    this.languageService.dir.subscribe(dir => {
+    this.languageService.dir$.subscribe(dir => {
       this.dir = dir;
     });
 
@@ -69,7 +69,7 @@ export class SidenavComponent implements OnDestroy, OnInit {
 
   ngOnDestroy(): void {
     // prevent memory leak when component destroyed
-    this.languageService.dir.unsubscribe();
+    this.languageService.dir$.unsubscribe();
   }
 
   ngOnInit(): void {

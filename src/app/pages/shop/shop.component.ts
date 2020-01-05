@@ -34,11 +34,11 @@ export class ShopComponent implements OnDestroy {
     private router: Router,
     private sidenavService: SidenavService
   ) {
-    this.footerService.footerClass.next(null);
-    this.headerService.headerClass.next(null);
-    this.headerService.headerTitle.next('SHOP.TITLE');
+    this.footerService.footerClass$.next(null);
+    this.headerService.headerClass$.next(null);
+    this.headerService.headerTitle$.next('SHOP.TITLE');
 
-    this.languageService.dir.subscribe(dir => {
+    this.languageService.dir$.subscribe(dir => {
       this.dir = dir;
     });
 

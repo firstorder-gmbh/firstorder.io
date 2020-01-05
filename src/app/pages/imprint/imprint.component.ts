@@ -13,8 +13,8 @@ export class ImprintComponent {
       private footerService: FooterService,
       private headerService: HeaderService
   ) {
-    this.footerService.footerClass.next(null);
-    this.headerService.headerClass.next(null);
-    this.headerService.headerTitle.next('IMPRINT.TITLE');
+    this.footerService.footerClass$.next(null);
+    this.headerService.headerClass$.next(null);
+    this.headerService.headerTitle$.next('IMPRINT.TITLE');
   }
 }
