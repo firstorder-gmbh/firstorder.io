@@ -44,7 +44,7 @@ export class ShopComponent implements OnDestroy {
 
     this.route.paramMap.pipe(
       switchMap((params: ParamMap) =>
-        of(params.get('id'))
+        of(params.get('_id'))
       )
     ).subscribe((id: string) => {
       this.productService.productId$.next(id);

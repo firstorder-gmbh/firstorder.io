@@ -14,7 +14,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
       { path: 'shop', redirectTo: 'shop/', pathMatch: 'full' },
-      { path: 'shop/:id', component: ShopComponent },
+      { path: 'shop/:_id', component: ShopComponent },
       { path: 'imprint', component: ImprintComponent }
     ]
   },
