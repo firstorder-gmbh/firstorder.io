@@ -63,7 +63,7 @@ This to ensure proper fallback to 'en' in case a translation is not found.
 
 ### Storage
 
-Firebase Storage can keep all the files that are not static assets to the project. 
+Firebase Storage can keep all the files that are not static assets to the project.
 These can be product files, profile pictures or uploaded files.
 
 We recommend storing file metadata in the Database using the same path and :fileid like is Storage:
