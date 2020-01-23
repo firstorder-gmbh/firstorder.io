@@ -8,6 +8,7 @@
 body {
   font-family: Roboto, 'Helvetica Neue', sans-serif;
   margin: 0;
+  text-size-adjust: none; // Don't inflate labels on mobile orientation change
 
   // Mirror icons with the .rtl-mirror class on right-to-left languages
   [dir=rtl] {
@@ -15,23 +16,70 @@ body {
       transform: scale(-1, 1);
     }
   }
+
+  // Show enable-javascript message at the top, over the header
+  .enable-javascript {
+    align-items: center;
+    background: #f44336;
+    display: flex;
+    justify-content: center;
+    min-height: 64px;
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
+    p {
+      margin: 16px;
+    }
+  }
 }
 
 @media print {
-  // Force to print colors, otherwise the material components will look white
-  color-adjust: exact;
-  -webkit-print-color-adjust: exact;
+
+  * {
+    color: black !important;
+    // Force to print colors, otherwise the material components will look white
+    color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  body,
+  .header-title,
+  .mat-autocomplete-panel,
+  .mat-bottom-sheet-container,
+  .mat-card,
+  .mat-button-toggle,
+  .mat-dialog-container,
+  .mat-drawer,
+  .mat-drawer-container,
+  .mat-expansion-panel,
+  .mat-table {
+    background: white !important;
+    color: black !important;
+  }
+  .cdk-overlay-backdrop {
+    background-color: transparent !important;
+  }
+
+  // Hide website controls when printing
+  app-header,
+  app-footer,
+  .hide-print,
+  .mat-drawer-backdrop,
+  .mat-header-cell .mat-checkbox,
+  .mat-fab,
+  .mat-mini-fab,
+  .mat-toolbar button,
+  .navbar {
+    display: none !important;
+  }
 
   body {
     // Roboto not printing ok on Chrome, fallback on supported fonts
     font-family: 'Helvetica Neue', sans-serif !important;
-    
+
     mat-sidenav-container {
-      // Remove background color to save toner
-      background-color: transparent !important;
-      // Override the color from the template
-      color: black !important;
       // Position needs to be relative
+      min-height: 100vh;
       position: relative !important;
 
       mat-sidenav-content {
@@ -58,19 +106,32 @@ body {
 
         // Define where a page break should occur when printing
         h2 {
+          break-after: always; // New syntax
           page-break-before: always; // always break before h2 elements, for chapters for example
         }
         h3, h4 {
+          break-after: avoid; // New syntax
           page-break-after: avoid; // avoid breaking after subtitles, it looks weird
         }
-        pre, blockquote {
+        pre, blockquote, img, mat-row, .thumbnail {
+          break-inside: avoid; // New syntax
           page-break-inside: avoid; // avoid breaking inside pre and blockquotes
+        }
+
+        .section-articles.has-opened {
+          display: block;
+          .card-container {
+            &:not(.opened) {
+              display: none !important;
+            }
+            &.opened {
+              height: 100% !important;
+              overflow-y: visible !important;
+              position: relative !important;
+            }
+          }
         }
       }
     }
-  }
-  // Hide website controls when printing
-  .hide-print, .navbar, .sidenav.details, app-header, app-footer {
-    display: none !important;
   }
 }
