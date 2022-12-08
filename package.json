@@ -69,7 +69,7 @@
     "@types/jasminewd2": "2.0.8",
     "@types/node": "12.12.14",
     "codelyzer": "5.2.1",
-    "express": "4.17.1",
+    "express": "4.17.3",
     "highlight.js": "9.17.1",
     "htmllint-cli": "0.0.7",
     "http-server": "0.12.0",
